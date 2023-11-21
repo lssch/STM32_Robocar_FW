@@ -25,6 +25,8 @@
 
 #include "types/types.h"
 #include "TFLC02/TFLC02.h"
+#include "comms/comms.h"
+#include "NeoPixel/NeoPixel.h"
 #include "Servo/Servo.h"
 /* USER CODE END Includes */
 
@@ -58,8 +60,16 @@ UART_HandleTypeDef huart1;
 /* USER CODE BEGIN PV */
 robocar_data_t data;
 TFLC02::TFLC02 tof_spot{&huart4};
+Comms::CommsSlave slave{&hspi1, &data};
+NeoPixel::Controller npxc_state_vfs_light{{&htim2, TIM_CHANNEL_1}, NeoPixel::Controller::WS2812, 9};
+NeoPixel::Controller npxc_nav_light{{&htim2, TIM_CHANNEL_3}, NeoPixel::Controller::SK6812, 4};
+NeoPixel::Group state_light{npxc_state_vfs_light.get_pixel(0), 1};
+NeoPixel::Group vfs_light{npxc_state_vfs_light.get_pixel(1), 8};
+NeoPixel::Group navigation_front{npxc_nav_light.get_pixel(0), {0,3}};
+NeoPixel::Group navigation_back{npxc_nav_light.get_pixel(0), {1,2}};
+NeoPixel::Group navigation_left{npxc_nav_light.get_pixel(0), {0,1}};
+NeoPixel::Group navigation_right{npxc_nav_light.get_pixel(0), {2,3}};
 Servo servo{&htim4, TIM_CHANNEL_1, &data.parameter.servo};
-[[maybe_unused]] Servo servo_res{&htim4, TIM_CHANNEL_2, &data.parameter.servo};
 
 
 /* USER CODE END PV */
@@ -126,9 +136,15 @@ int main(void)
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
-  //motor.setVelocity(0);
-  servo.move(0);
+  state_light.set_color(0,0,255);
+  navigation_front.set_color(255,255,255);
+  navigation_back.set_color(255,0,0);
+  npxc_nav_light.update();
+  npxc_state_vfs_light.update();
 
+  tof_spot.reset();
+  servo.move(0);
+  //motor.setVelocity(0);
 
   // Kick of the DMA to receive a request from the ESP32 slave
   HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
@@ -136,11 +152,16 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  state_light.set_color(255,0,0);
+  npxc_state_vfs_light.update();
+
+  while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    data.state.mpu = State::Mpu::FAULT;
+    data.state.cpu.clock = 33;
+    data.state.cpu.load = 100;
     std::cout << "Hello World" << std::endl;
   }
   /* USER CODE END 3 */
@@ -593,6 +614,28 @@ HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
 setbuf(stdout, NULL);
 return ch;
 }
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+  if (GPIO_Pin == ESP32_SPI_CS_Pin) {
+    /*
+    uint16_t size = sizeof(Comms::Comms::comms_packet_t) - hdma_spi1_rx.Instance->NDTR;
+
+    std::cout << "hdma_spi1_rx.Instance->NDTR (" << size << "): ";
+    for (int i = 0; i < size; ++i) {
+      std::cout << +slave.rx_packet_dma.buffer[i] << " ";
+    }
+    std::cout << std::endl;
+    */
+    slave.exchange();
+
+    HAL_SPI_Abort(&hspi1);
+    __HAL_RCC_SPI2_FORCE_RESET();
+    __HAL_RCC_SPI2_RELEASE_RESET();
+
+    HAL_SPI_TransmitReceive_DMA(&hspi1, slave.tx_packet_dma.buffer, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+
+  }
 }
 /* USER CODE END 4 */
 
