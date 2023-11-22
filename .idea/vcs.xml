@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/NeoPixel" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/Servo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Core/Inc/TB6612FNG" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/TFLC02" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/comms" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/types" vcs="Git" />

@@ -28,6 +28,7 @@
 #include "comms/comms.h"
 #include "NeoPixel/NeoPixel.h"
 #include "Servo/Servo.h"
+#include "TB6612FNG/TB6612FNG.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,6 +47,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
 SPI_HandleTypeDef hspi1;
 DMA_HandleTypeDef hdma_spi1_rx;
 DMA_HandleTypeDef hdma_spi1_tx;
@@ -53,25 +56,48 @@ DMA_HandleTypeDef hdma_spi1_tx;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
+DMA_HandleTypeDef hdma_tim2_ch1;
+DMA_HandleTypeDef hdma_tim2_up_ch3;
 
 UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-robocar_data_t data;
-TFLC02::TFLC02 tof_spot{&huart4};
+robocar_data_t_ data;
+
+#include "types/parameter.h"
+
+Parameter::Servo servo_parameter{.zero_position = 0,
+        .max_steering_angle = 6000,
+        .steering_limits = 3000};
+
+//TFLC02::TFLC02 tof_spot{&huart4};
 Comms::CommsSlave slave{&hspi1, &data};
 NeoPixel::Controller npxc_state_vfs_light{{&htim2, TIM_CHANNEL_1}, NeoPixel::Controller::WS2812, 9};
 NeoPixel::Controller npxc_nav_light{{&htim2, TIM_CHANNEL_3}, NeoPixel::Controller::SK6812, 4};
-NeoPixel::Group state_light{npxc_state_vfs_light.get_pixel(0), 1};
-NeoPixel::Group vfs_light{npxc_state_vfs_light.get_pixel(1), 8};
+NeoPixel::Group state_led{npxc_state_vfs_light.get_pixel(0), 1};
+//NeoPixel::Group vfs_light{npxc_state_vfs_light.get_pixel(1), 8};
 NeoPixel::Group navigation_front{npxc_nav_light.get_pixel(0), {0,3}};
 NeoPixel::Group navigation_back{npxc_nav_light.get_pixel(0), {1,2}};
 NeoPixel::Group navigation_left{npxc_nav_light.get_pixel(0), {0,1}};
 NeoPixel::Group navigation_right{npxc_nav_light.get_pixel(0), {2,3}};
-Servo servo{&htim4, TIM_CHANNEL_1, &data.parameter.servo};
 
+Servo servo{&htim4, TIM_CHANNEL_1, &servo_parameter};
+Servo servo_res{&htim4, TIM_CHANNEL_2, &servo_parameter};
+TB6612FNG motor{MOTOR_STB_GPIO_Port, MOTOR_STB_Pin,
+                MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,
+                MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,
+                MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,
+                MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,
+                &htim2, TIM_CHANNEL_1, &htim2, TIM_CHANNEL_2};
 
+/*
+State::State state{&state_led,
+                   {ESP32_OK_GPIO_Port, ESP32_OK_Pin},
+                   {ESP32_ERROR_GPIO_Port, ESP32_ERROR_Pin},
+                   {ESP32_RESET_GPIO_Port, ESP32_RESET_Pin}};
+*/
+HAL_StatusTypeDef result;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -84,6 +110,7 @@ static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_UART4_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -134,35 +161,95 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_UART4_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
-  state_light.set_color(0,0,255);
-  navigation_front.set_color(255,255,255);
-  navigation_back.set_color(255,0,0);
-  npxc_nav_light.update();
+  state_led.set_brightness(5);
+  state_led.set_color(0,0,255);
   npxc_state_vfs_light.update();
 
-  tof_spot.reset();
+  //tof_spot.reset();
   servo.move(0);
   //motor.setVelocity(0);
 
   // Kick of the DMA to receive a request from the ESP32 slave
-  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+  //HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  state_light.set_color(255,0,0);
+
+
+  //state_led.set_color(255,0,0);
+  //npxc_state_vfs_light.update();
+
+  // Reset ESP32
+  HAL_Delay(1000);
+  HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_SET);
+  HAL_Delay(10);
+  HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_RESET);
+
+  state_led.set_color(0, 255, 0);
   npxc_state_vfs_light.update();
 
   while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    data.state.mpu = State::Mpu::FAULT;
-    data.state.cpu.clock = 33;
-    data.state.cpu.load = 100;
     std::cout << "Hello World" << std::endl;
+
+    for (int i = 0; i < 100; i++) {
+      motor.ch_a.move(i);
+      HAL_Delay(50);
+    }
+    HAL_Delay(100);
+    for (int i = 0; i < 100; i++) {
+      motor.ch_a.move(100-i);
+      HAL_Delay(50);
+    }
+    for (int i = 0; i < 100; i++) {
+      motor.ch_a.move(-i);
+      HAL_Delay(50);
+    }
+    HAL_Delay(100);
+    for (int i = 0; i < 100; i++) {
+      motor.ch_a.move(i-100);
+      HAL_Delay(50);
+    }
+
+    for (int i = 0; i < 100; i++) {
+      motor.ch_a.move(i);
+      HAL_Delay(50);
+    }
+    motor.ch_a.brake();
+    HAL_Delay(1000);
+    for (int i = 0; i < 100; i++) {
+      motor.ch_a.move(i);
+      HAL_Delay(50);
+    }
+    motor.ch_a.brake();
+    HAL_Delay(1000);
+
+    /*
+    uint8_t delay = 0;
+    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
+      servo.move(i);
+      HAL_Delay(delay);
+    }
+
+    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
+      servo.move(servo_parameter.steering_limits-i);
+      HAL_Delay(delay);
+    }
+    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
+      servo.move(-i);
+      HAL_Delay(delay);
+    }
+    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
+      servo.move(i-servo_parameter.steering_limits);
+      HAL_Delay(delay);
+    }
+     */
   }
   /* USER CODE END 3 */
 }
@@ -219,6 +306,40 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 400000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
 }
 
 /**
@@ -280,7 +401,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 4294967295;
+  htim2.Init.Period = 101-1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -343,7 +464,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 65535;
+  htim3.Init.Period = 8400-1;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -404,9 +525,9 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 1 */
   htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 0;
+  htim4.Init.Prescaler = 26-1;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 65535;
+  htim4.Init.Period = 65000-1;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
@@ -419,10 +540,6 @@ static void MX_TIM4_Init(void)
     Error_Handler();
   }
   if (HAL_TIM_PWM_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_OC_Init(&htim4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -440,8 +557,7 @@ static void MX_TIM4_Init(void)
   {
     Error_Handler();
   }
-  sConfigOC.OCMode = TIM_OCMODE_TIMING;
-  if (HAL_TIM_OC_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -526,8 +642,15 @@ static void MX_DMA_Init(void)
 
   /* DMA controller clock enable */
   __HAL_RCC_DMA2_CLK_ENABLE();
+  __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
+  /* DMA1_Stream1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
+  /* DMA1_Stream5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
   /* DMA2_Stream2_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
@@ -559,8 +682,8 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : MOTOR1_IN1_Pin MOTOR1_IN2_Pin MOTOR_STB_Pin MOTOR2_IN1_Pin */
-  GPIO_InitStruct.Pin = MOTOR1_IN1_Pin|MOTOR1_IN2_Pin|MOTOR_STB_Pin|MOTOR2_IN1_Pin;
+  /*Configure GPIO pins : MOTOR1_IN1_Pin MOTOR1_IN2_Pin MOTOR2_IN1_Pin */
+  GPIO_InitStruct.Pin = MOTOR1_IN1_Pin|MOTOR1_IN2_Pin|MOTOR2_IN1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -577,6 +700,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(ESP32_SPI_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : MOTOR_STB_Pin */
+  GPIO_InitStruct.Pin = MOTOR_STB_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(MOTOR_STB_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : USR_CONFIG1_Pin USR_CONCIG2_Pin USR_CONGIG3_Pin */
   GPIO_InitStruct.Pin = USR_CONFIG1_Pin|USR_CONCIG2_Pin|USR_CONGIG3_Pin;
@@ -616,6 +746,10 @@ return ch;
 }
 }
 
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
+  if (htim == &htim2) npxc_state_vfs_light.dma_finished();
+}
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
   if (GPIO_Pin == ESP32_SPI_CS_Pin) {
     /*
@@ -628,10 +762,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
     std::cout << std::endl;
     */
     slave.exchange();
-
-    HAL_SPI_Abort(&hspi1);
-    __HAL_RCC_SPI2_FORCE_RESET();
-    __HAL_RCC_SPI2_RELEASE_RESET();
 
     HAL_SPI_TransmitReceive_DMA(&hspi1, slave.tx_packet_dma.buffer, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
 

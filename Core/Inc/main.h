@@ -117,6 +117,10 @@ void Error_Handler(void);
 #define SERVO1_PWM_GPIO_Port GPIOB
 #define SERVO2_PWM_Pin GPIO_PIN_7
 #define SERVO2_PWM_GPIO_Port GPIOB
+#define IMU_I2C_SCL_Pin GPIO_PIN_8
+#define IMU_I2C_SCL_GPIO_Port GPIOB
+#define IMU_I2C_SDA_Pin GPIO_PIN_9
+#define IMU_I2C_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
