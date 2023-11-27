@@ -24,6 +24,8 @@
 #include <iostream>
 
 #include "types/types.h"
+#include "parameter_handler/parameter_handler.h"
+#include "mpu60X0/mpu60X0.h"
 #include "TFLC02/TFLC02.h"
 #include "comms/comms.h"
 #include "NeoPixel/NeoPixel.h"
@@ -63,7 +65,8 @@ UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-robocar_data_t_ data;
+robocar_data_t data;
+ParameterHandler parameter_handler{&data.parameter};
 
 #include "types/parameter.h"
 
@@ -71,7 +74,8 @@ Parameter::Servo servo_parameter{.zero_position = 0,
         .max_steering_angle = 6000,
         .steering_limits = 3000};
 
-//TFLC02::TFLC02 tof_spot{&huart4};
+TFLC02::TFLC02 tof_spot{&huart4};
+MPU60X0 imu{&data.parameter.imu, &data.state.imu};
 Comms::CommsSlave slave{&hspi1, &data};
 NeoPixel::Controller npxc_state_vfs_light{{&htim2, TIM_CHANNEL_1}, NeoPixel::Controller::WS2812, 9};
 NeoPixel::Controller npxc_nav_light{{&htim2, TIM_CHANNEL_3}, NeoPixel::Controller::SK6812, 4};
@@ -91,13 +95,6 @@ TB6612FNG motor{MOTOR_STB_GPIO_Port, MOTOR_STB_Pin,
                 MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,
                 &htim2, TIM_CHANNEL_1, &htim2, TIM_CHANNEL_2};
 
-/*
-State::State state{&state_led,
-                   {ESP32_OK_GPIO_Port, ESP32_OK_Pin},
-                   {ESP32_ERROR_GPIO_Port, ESP32_ERROR_Pin},
-                   {ESP32_RESET_GPIO_Port, ESP32_RESET_Pin}};
-*/
-HAL_StatusTypeDef result;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -163,12 +160,39 @@ int main(void)
   MX_UART4_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+  std::cout << "Device is initialising..." << std::endl;
+
+#pragma region SOFTWARE INITIALISATION
+  // TODO: This function should ony be called once to write te correct parameter values into the flash storage
+  parameter_handler.InitParameter();
+  std::cout << "Initialised parameters on flash memory!" << std::endl;
+
+  if (parameter_handler.GetParameter() != SUCCESS) {
+    std::cout << "Could not read parameter_handler from flash memory!" << std::endl;
+    Error_Handler();
+  }
+  std::cout << "Successfully got all parameters from flash memory" << std::endl;
+#pragma region SOFTWARE INITIALISATION
+
+#pragma region HARDWARE INITIALISATION
+  //tof_spot.init();
+  if (imu.init(3) != SUCCESS) Error_Handler();
+#pragma endregion HARDWARE INITIALISATION
 
   state_led.set_brightness(5);
   state_led.set_color(0,0,255);
   npxc_state_vfs_light.update();
 
+/*
+State::State state{&state_led,
+                   {ESP32_OK_GPIO_Port, ESP32_OK_Pin},
+                   {ESP32_ERROR_GPIO_Port, ESP32_ERROR_Pin},
+                   {ESP32_RESET_GPIO_Port, ESP32_RESET_Pin}};
+*/
+
+
   //tof_spot.reset();
+  motor.enable();
   servo.move(0);
   //motor.setVelocity(0);
 
@@ -178,10 +202,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-
-  //state_led.set_color(255,0,0);
-  //npxc_state_vfs_light.update();
 
   // Reset ESP32
   HAL_Delay(1000);
