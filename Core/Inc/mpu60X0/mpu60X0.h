@@ -9,6 +9,7 @@
 #include "types/parameter.h"
 #include "types/state.h"
 #include "types/sensor.h"
+#include "types/data.h"
 
 #define MPU_ADDRESS 0x68 << 1
 #define PWR_MGMT_1_REG 0x6B
@@ -25,19 +26,19 @@ extern I2C_HandleTypeDef hi2c1;
 
 class MPU60X0 {
 public:
-  MPU60X0(Parameter::Imu* parameter_, State::Imu* state_);
+  MPU60X0(Parameter::Imu* parameter_, State::Imu* state_, Data::Imu* data_);
 
   uint8_t init(uint8_t trials);
   uint8_t SetGyroMaxDps();
   uint8_t SetGyroSamplerateDivisor();
   uint8_t SetAccelerometerMaxG();
   uint8_t GetValues(Sensor::Imu* mpu);
-  void CalibrateGyro(Sensor::Imu* mpu);
+  void CalibrateGyro();
 
 private:
   Parameter::Imu* parameter;
   State::Imu* state;
-  Sensor::Cartesian gyro_calibration_values {0};
+  Data::Imu* data;
 };
 
 #endif //MPU6050_H

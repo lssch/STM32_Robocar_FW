@@ -66,16 +66,17 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 robocar_data_t data;
+
 ParameterHandler parameter_handler{&data.parameter};
 
+// TODO: This code can be eliminated once the parameter handler works
 #include "types/parameter.h"
-
 Parameter::Servo servo_parameter{.zero_position = 0,
         .max_steering_angle = 6000,
         .steering_limits = 3000};
 
 TFLC02::TFLC02 tof_spot{&huart4};
-MPU60X0 imu{&data.parameter.imu, &data.state.imu};
+MPU60X0 imu{&data.parameter.imu, &data.state.imu, &data.data.imu};
 Comms::CommsSlave slave{&hspi1, &data};
 NeoPixel::Controller npxc_state_vfs_light{{&htim2, TIM_CHANNEL_1}, NeoPixel::Controller::WS2812, 9};
 NeoPixel::Controller npxc_nav_light{{&htim2, TIM_CHANNEL_3}, NeoPixel::Controller::SK6812, 4};
@@ -94,7 +95,6 @@ TB6612FNG motor{MOTOR_STB_GPIO_Port, MOTOR_STB_Pin,
                 MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,
                 MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,
                 &htim2, TIM_CHANNEL_1, &htim2, TIM_CHANNEL_2};
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -197,7 +197,7 @@ State::State state{&state_led,
   //motor.setVelocity(0);
 
   // Kick of the DMA to receive a request from the ESP32 slave
-  //HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -216,6 +216,31 @@ State::State state{&state_led,
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+#pragma region REQUESTS
+    // Check if new parameters need to be saved
+    if (data.request.safe_parameter) {
+      std::cout << "Request to update parameters" << std::endl;
+      if (parameter_handler.SetParameter() != SUCCESS) {
+        std::cout << "Could not override the parameters on the flash memory!" << std::endl;
+      } else {
+        data.request.safe_parameter = false;
+        std::cout << "Successfully overwritten all parameters on the flash memory" << std::endl;
+      }
+    }
+
+    // Check if the IMU needs calibration
+    if (data.request.calibrate_imu) {
+      std::cout << "Don't move! Gyroscope is calibrating..." << std::endl;
+      imu.CalibrateGyro();
+      data.request.calibrate_imu = false;
+      std::cout << "Gyroscope calibrated to new values" << std::endl;
+    }
+#pragma endregion REQUESTS
+
+#pragma region SENSOR READING
+    imu.GetValues(&data.sensor.imu);
+#pragma endregion SENSOR READING
+
     std::cout << "Hello World" << std::endl;
 
     for (int i = 0; i < 100; i++) {
@@ -772,7 +797,6 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
   if (GPIO_Pin == ESP32_SPI_CS_Pin) {
-    /*
     uint16_t size = sizeof(Comms::Comms::comms_packet_t) - hdma_spi1_rx.Instance->NDTR;
 
     std::cout << "hdma_spi1_rx.Instance->NDTR (" << size << "): ";
@@ -780,11 +804,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
       std::cout << +slave.rx_packet_dma.buffer[i] << " ";
     }
     std::cout << std::endl;
-    */
+
     slave.exchange();
 
-    HAL_SPI_TransmitReceive_DMA(&hspi1, slave.tx_packet_dma.buffer, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
-
+    HAL_SPI_TransmitReceive_DMA(
+            &hspi1,
+            slave.tx_packet_dma.buffer,
+            slave.rx_packet_dma.buffer,
+            sizeof(slave.tx_packet_dma.header.response_data_length)+sizeof(Comms::Comms::comms_packet_header_t));
   }
 }
 /* USER CODE END 4 */

@@ -5,9 +5,10 @@
 #include <stdexcept>
 #include "mpu60X0.h"
 
-MPU60X0::MPU60X0(Parameter::Imu* parameter_, State::Imu* state_)
+MPU60X0::MPU60X0(Parameter::Imu* parameter_, State::Imu* state_, Data::Imu* data_)
   : parameter(parameter_),
-    state(state_) {
+    state(state_),
+    data(data_) {
   *state = State::Imu::DISCONNECTED;
 }
 
@@ -128,32 +129,33 @@ uint8_t MPU60X0::GetValues(Sensor::Imu* mpu) {
 
   mpu->temperature = (float) temp / 340 + 36.53f;
 
-  mpu->gyroscope.x = (float) gyro[0] / 0x7FFF * (float) parameter->gyro_max_dps - gyro_calibration_values.x;
-  mpu->gyroscope.y = (float) gyro[1] / 0x7FFF * (float) parameter->gyro_max_dps - gyro_calibration_values.y;
-  mpu->gyroscope.z = (float) gyro[2] / 0x7FFF * (float) parameter->gyro_max_dps - gyro_calibration_values.z;
+  mpu->gyroscope.x = (float) gyro[0] / 0x7FFF * (float) parameter->gyro_max_dps - data->gyro_calibration_values.x;
+  mpu->gyroscope.y = (float) gyro[1] / 0x7FFF * (float) parameter->gyro_max_dps - data->gyro_calibration_values.y;
+  mpu->gyroscope.z = (float) gyro[2] / 0x7FFF * (float) parameter->gyro_max_dps - data->gyro_calibration_values.z;
 
   return SUCCESS;
 }
 
 
-void MPU60X0::CalibrateGyro(Sensor::Imu* mpu) {
+void MPU60X0::CalibrateGyro() {
+  Sensor::Imu mpu{};
   Sensor::Cartesian sum{};
 
   *state = State::Imu::CALIBRATING;
 
   for (uint8_t i = 0; i < parameter->gyro_calibration_samples; ++i) {
-    MPU60X0::GetValues(mpu);
+    MPU60X0::GetValues(&mpu);
 
-    sum.x += mpu->gyroscope.x;
-    sum.y += mpu->gyroscope.y;
-    sum.z += mpu->gyroscope.z;
+    sum.x += mpu.gyroscope.x;
+    sum.y += mpu.gyroscope.y;
+    sum.z += mpu.gyroscope.z;
 
     HAL_Delay(20);
   }
 
-  gyro_calibration_values.x = sum.x / (float) parameter->gyro_calibration_samples + gyro_calibration_values.x;
-  gyro_calibration_values.y = sum.y / (float) parameter->gyro_calibration_samples + gyro_calibration_values.y;
-  gyro_calibration_values.z = sum.z / (float) parameter->gyro_calibration_samples + gyro_calibration_values.z;
+  data->gyro_calibration_values.x = sum.x / (float) parameter->gyro_calibration_samples + data->gyro_calibration_values.x;
+  data->gyro_calibration_values.y = sum.y / (float) parameter->gyro_calibration_samples + data->gyro_calibration_values.y;
+  data->gyro_calibration_values.z = sum.z / (float) parameter->gyro_calibration_samples + data->gyro_calibration_values.z;
 
   *state = State::Imu::CALIBRATED;
 }

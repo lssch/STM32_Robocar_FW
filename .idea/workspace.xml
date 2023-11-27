@@ -29,6 +29,8 @@
       <change beforePath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/comms/comms.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/comms/comms.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/types/data.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/data.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/types/parameter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/parameter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/types/request.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/request.h" afterDir="false" />
@@ -36,20 +38,12 @@
       <change beforePath="$PROJECT_DIR$/Core/Inc/types/state.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/state.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/types/types.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/types.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-4a0dbf0fab98b45a6d33.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-22T16-42-36-0402.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-STM32_Robocar_FW.elf-Debug-3a1ace2a7f9b7f243b15.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.elf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.hex" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.hex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.map" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +135,7 @@
       <workItem from="1700744532475" duration="132000" />
       <workItem from="1700749578059" duration="12490000" />
       <workItem from="1700903244945" duration="789000" />
+      <workItem from="1701111849694" duration="1768000" />
     </task>
     <servers />
   </component>
