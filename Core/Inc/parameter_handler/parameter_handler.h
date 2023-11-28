@@ -11,7 +11,7 @@ class ParameterHandler {
 public:
   ParameterHandler(Parameter::Parameter* parameter_);
 
-  void InitParameter();
+  uint8_t InitParameter();
   uint8_t GetParameter();
   uint8_t SetParameter();
 private:

@@ -164,8 +164,12 @@ int main(void)
 
 #pragma region SOFTWARE INITIALISATION
   // TODO: This function should ony be called once to write te correct parameter values into the flash storage
-  parameter_handler.InitParameter();
-  std::cout << "Initialised parameters on flash memory!" << std::endl;
+  if (parameter_handler.InitParameter() != SUCCESS) {
+    std::cout << "Could not initialise parameters on flash memory!" << std::endl;
+    Error_Handler();
+  } else {
+    std::cout << "Initialised parameters on flash memory!" << std::endl;
+  }
 
   if (parameter_handler.GetParameter() != SUCCESS) {
     std::cout << "Could not read parameter_handler from flash memory!" << std::endl;
@@ -824,6 +828,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
+  std::cout << "Error handler was called" << std::endl;
   __disable_irq();
   while (1)
   {

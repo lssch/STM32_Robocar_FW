@@ -9,7 +9,7 @@ ParameterHandler::ParameterHandler(Parameter::Parameter* parameter_)
   : parameter(parameter_) {
 }
 
-void ParameterHandler::InitParameter() {
+uint8_t ParameterHandler::InitParameter() {
   parameter->car.chassis_length = 224;
   parameter->car.chassis_width = 146;
   parameter->car.wheel_diameter = 61;
@@ -38,6 +38,8 @@ void ParameterHandler::InitParameter() {
   parameter->navlight.color_blinker.red = 3*255/4;
   parameter->navlight.color_blinker.green = 255/4;
   parameter->navlight.color_blinker.blue= 0;
+
+  return SetParameter();
 }
 
 uint8_t ParameterHandler::GetParameter() {
@@ -49,28 +51,68 @@ uint8_t ParameterHandler::GetParameter() {
   // Compare the first value to a fix value to check if the read access is successful
   if (*parameter_uint8_t++ != check_value) return ERROR;
 
-  parameter->imu.accel_max_g = static_cast<Parameter::ImuAccelMaxG>(*(parameter_uint8_t));
-  parameter_uint8_t += 1;
-  parameter->imu.gyro_samplerate_divisor = *(parameter_uint8_t);
-  parameter_uint8_t += 1;
-  parameter->imu.gyro_calibration_samples = *(parameter_uint8_t);
-  parameter_uint8_t += 1;
   parameter->car.chassis_width = *(parameter_uint8_t);
   parameter_uint8_t += 1;
   parameter->car.wheel_diameter = *(parameter_uint8_t);
   parameter_uint8_t += 1;
 
+  parameter->imu.gyro_samplerate_divisor = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->imu.accel_max_g = static_cast<Parameter::ImuAccelMaxG>(*(parameter_uint8_t));
+  parameter_uint8_t += 1;
+  parameter->imu.gyro_calibration_samples = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+
+  parameter->vfs.neopixel.enable = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->vfs.neopixel.color.red = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->vfs.neopixel.color.green = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->vfs.neopixel.color.blue = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->vfs.neopixel.brightness = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+
+  parameter->navlight.color_front.red = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_front.green = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_front.blue = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_back.red = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_back.green = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_back.blue = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_blinker.red = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_blinker.green = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  parameter->navlight.color_blinker.blue = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+
   // read words
   parameter_uint16_t = (uint16_t*) parameter_uint8_t;
+
   parameter->car.chassis_length = *(parameter_uint16_t);
   parameter_uint16_t += 2;
+
   parameter->imu.gyro_max_dps = static_cast<Parameter::ImuGyproMaxDps>(*parameter_uint16_t);
+  parameter_uint16_t += 2;
+
+  parameter->servo.zero_position = static_cast<int16_t>(*parameter_uint16_t);
+  parameter_uint16_t += 2;
+  parameter->servo.max_steering_angle = static_cast<int16_t>(*parameter_uint16_t);
+  parameter_uint16_t += 2;
+  parameter->servo.steering_limits = static_cast<int16_t>(*parameter_uint16_t);
   parameter_uint16_t += 2;
 
   // read dwords
   parameter_uint32_t = (uint32_t*) parameter_uint16_t;
-
   //parameter_uint32_t += 4;
+
   return SUCCESS;
 }
 
@@ -87,16 +129,39 @@ uint8_t ParameterHandler::SetParameter() {
   // Data to write to flash
   uint8_t parameter_uint8_t[] = {
           check_value,
-          static_cast<uint8_t>(parameter->imu.accel_max_g),
-          parameter->imu.gyro_samplerate_divisor,
-          parameter->imu.gyro_calibration_samples,
+
           parameter->car.chassis_width,
           parameter->car.wheel_diameter,
+
+          parameter->imu.gyro_samplerate_divisor,
+          static_cast<uint8_t>(parameter->imu.accel_max_g),
+          parameter->imu.gyro_calibration_samples,
+
+          parameter->vfs.neopixel.enable,
+          parameter->vfs.neopixel.color.red,
+          parameter->vfs.neopixel.color.green,
+          parameter->vfs.neopixel.color.blue,
+          parameter->vfs.neopixel.brightness,
+
+          parameter->navlight.color_front.red,
+          parameter->navlight.color_front.green,
+          parameter->navlight.color_front.blue,
+          parameter->navlight.color_back.red,
+          parameter->navlight.color_back.green,
+          parameter->navlight.color_back.blue,
+          parameter->navlight.color_blinker.red,
+          parameter->navlight.color_blinker.green,
+          parameter->navlight.color_blinker.blue,
   };
 
   uint16_t parameter_uint16_t[] = {
           parameter->car.chassis_length,
+
           static_cast<uint16_t>(parameter->imu.gyro_max_dps),
+
+          static_cast<uint16_t>(parameter->servo.zero_position),
+          static_cast<uint16_t>(parameter->servo.max_steering_angle),
+          static_cast<uint16_t>(parameter->servo.steering_limits),
   };
 
   uint32_t parameter_uint32_t[] = {
