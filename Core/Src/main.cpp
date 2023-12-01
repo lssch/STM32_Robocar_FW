@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <iostream>
+#include <iomanip>
 
 #include "types/types.h"
 #include "parameter_handler/parameter_handler.h"
@@ -81,7 +82,7 @@ Comms::CommsSlave slave{&hspi1, &data};
 NeoPixel::Controller npxc_state_vfs_light{{&htim2, TIM_CHANNEL_1}, NeoPixel::Controller::WS2812, 9};
 NeoPixel::Controller npxc_nav_light{{&htim2, TIM_CHANNEL_3}, NeoPixel::Controller::SK6812, 4};
 NeoPixel::Group state_led{npxc_state_vfs_light.get_pixel(0), 1};
-//NeoPixel::Group vfs_light{npxc_state_vfs_light.get_pixel(1), 8};
+NeoPixel::Group vfs_light{npxc_state_vfs_light.get_pixel(1), 8};
 NeoPixel::Group navigation_front{npxc_nav_light.get_pixel(0), {0,3}};
 NeoPixel::Group navigation_back{npxc_nav_light.get_pixel(0), {1,2}};
 NeoPixel::Group navigation_left{npxc_nav_light.get_pixel(0), {0,1}};
@@ -94,7 +95,7 @@ TB6612FNG motor{MOTOR_STB_GPIO_Port, MOTOR_STB_Pin,
                 MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,
                 MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,
                 MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,
-                &htim2, TIM_CHANNEL_1, &htim2, TIM_CHANNEL_2};
+                &htim3, TIM_CHANNEL_1, &htim3, TIM_CHANNEL_2};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -161,10 +162,16 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   std::cout << "Device is initialising..." << std::endl;
+  data.state.microcontroller = State::Microcontroller::INITIALISING;
+  state_led.set_brightness(5);
+  state_led.set_color(0,0,255);
+  npxc_state_vfs_light.update();
 
 #pragma region SOFTWARE INITIALISATION
   // TODO: This function should ony be called once to write te correct parameter values into the flash storage
-  if (parameter_handler.InitParameter() != SUCCESS) {
+
+  parameter_handler.InitParameter();
+  if (parameter_handler.SetParameter() != SUCCESS) {
     std::cout << "Could not initialise parameters on flash memory!" << std::endl;
     Error_Handler();
   } else {
@@ -181,11 +188,17 @@ int main(void)
 #pragma region HARDWARE INITIALISATION
   //tof_spot.init();
   if (imu.init(3) != SUCCESS) Error_Handler();
-#pragma endregion HARDWARE INITIALISATION
+  std::cout << "Successfully connected to the imu" << std::endl;
 
-  state_led.set_brightness(5);
-  state_led.set_color(0,0,255);
-  npxc_state_vfs_light.update();
+  // Reset ESP32
+  HAL_Delay(100);
+  HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_SET);
+  HAL_Delay(10);
+  HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_RESET);
+
+  // Kick of the DMA to receive a request from the ESP32 slave
+  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+#pragma endregion HARDWARE INITIALISATION
 
 /*
 State::State state{&state_led,
@@ -194,27 +207,25 @@ State::State state{&state_led,
                    {ESP32_RESET_GPIO_Port, ESP32_RESET_Pin}};
 */
 
-
-  //tof_spot.reset();
   motor.enable();
   servo.move(0);
-  //motor.setVelocity(0);
+  motor.ch_a.move(0);
 
-  // Kick of the DMA to receive a request from the ESP32 slave
-  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+  state_led.set_color(0, 255, 0);
+
+  vfs_light.set_brightness(data.parameter.vfs.neopixel.enable*data.parameter.vfs.neopixel.brightness);
+  vfs_light.set_color(data.parameter.vfs.neopixel.color.red,
+                      data.parameter.vfs.neopixel.color.green,
+                      data.parameter.vfs.neopixel.color.blue);
+  npxc_state_vfs_light.update();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-  // Reset ESP32
-  HAL_Delay(1000);
-  HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_SET);
-  HAL_Delay(10);
-  HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_RESET);
-
-  state_led.set_color(0, 255, 0);
-  npxc_state_vfs_light.update();
+  std::cout << "Entering main loop..." << std::endl;
+  data.state.microcontroller = State::Microcontroller::RUNNING;
+  HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_SET);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 
   while (1) {
     /* USER CODE END WHILE */
@@ -243,62 +254,14 @@ State::State state{&state_led,
 
 #pragma region SENSOR READING
     imu.GetValues(&data.sensor.imu);
+    tof_spot.get_distance(&data.sensor.tof_spot);
 #pragma endregion SENSOR READING
 
-    std::cout << "Hello World" << std::endl;
-
-    for (int i = 0; i < 100; i++) {
-      motor.ch_a.move(i);
-      HAL_Delay(50);
-    }
-    HAL_Delay(100);
-    for (int i = 0; i < 100; i++) {
-      motor.ch_a.move(100-i);
-      HAL_Delay(50);
-    }
-    for (int i = 0; i < 100; i++) {
-      motor.ch_a.move(-i);
-      HAL_Delay(50);
-    }
-    HAL_Delay(100);
-    for (int i = 0; i < 100; i++) {
-      motor.ch_a.move(i-100);
-      HAL_Delay(50);
-    }
-
-    for (int i = 0; i < 100; i++) {
-      motor.ch_a.move(i);
-      HAL_Delay(50);
-    }
-    motor.ch_a.brake();
-    HAL_Delay(1000);
-    for (int i = 0; i < 100; i++) {
-      motor.ch_a.move(i);
-      HAL_Delay(50);
-    }
-    motor.ch_a.brake();
-    HAL_Delay(1000);
-
-    /*
-    uint8_t delay = 0;
-    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
-      servo.move(i);
-      HAL_Delay(delay);
-    }
-
-    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
-      servo.move(servo_parameter.steering_limits-i);
-      HAL_Delay(delay);
-    }
-    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
-      servo.move(-i);
-      HAL_Delay(delay);
-    }
-    for (int i = 0; i < servo_parameter.steering_limits; i+=10) {
-      servo.move(i-servo_parameter.steering_limits);
-      HAL_Delay(delay);
-    }
-     */
+    std::cout << "Mainloop..." << std::endl;
+    std::cout << "Distance: " << std::setprecision(2) << data.sensor.tof_spot.distance << " mm" << std::endl;
+    std::cout << "IMU: (" << data.sensor.imu.accelerometer.x << ", " << data.sensor.imu.accelerometer.y << ", " << data.sensor.imu.accelerometer.z
+              << ") GYRO: (" << data.sensor.imu.gyroscope.x << ", " << data.sensor.imu.gyroscope.y << ", " << data.sensor.imu.gyroscope.z
+              << ") TEMP: " << data.sensor.imu.temperature << " C"<< std::endl;
   }
   /* USER CODE END 3 */
 }
@@ -513,7 +476,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 8400-1;
+  htim3.Init.Period = 65535;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -700,12 +663,12 @@ static void MX_DMA_Init(void)
   /* DMA1_Stream5_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Stream5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream5_IRQn);
-  /* DMA2_Stream2_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
-  /* DMA2_Stream3_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream3_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream3_IRQn);
+  /* DMA2_Stream0_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
+  /* DMA2_Stream5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream5_IRQn);
 
 }
 
@@ -729,7 +692,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, MOTOR1_IN1_Pin|MOTOR1_IN2_Pin|MOTOR_STB_Pin|MOTOR2_IN1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, ESP32_COMM_START_Pin|ESP32_RES1_Pin|ESP32_RESET_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : MOTOR1_IN1_Pin MOTOR1_IN2_Pin MOTOR2_IN1_Pin */
   GPIO_InitStruct.Pin = MOTOR1_IN1_Pin|MOTOR1_IN2_Pin|MOTOR2_IN1_Pin;
@@ -742,6 +705,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = ESP32_OK_Pin|ESP32_ERROR_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : ESP32_COMM_START_Pin ESP32_RES1_Pin */
+  GPIO_InitStruct.Pin = ESP32_COMM_START_Pin|ESP32_RES1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : ESP32_SPI_CS_Pin */
@@ -782,6 +752,9 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(ESP32_RESET_GPIO_Port, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
+
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
 }
@@ -800,8 +773,9 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-  if (GPIO_Pin == ESP32_SPI_CS_Pin) {
-    uint16_t size = sizeof(Comms::Comms::comms_packet_t) - hdma_spi1_rx.Instance->NDTR;
+  if (GPIO_Pin == ESP32_SPI_CS_Pin && data.state.microcontroller == State::Microcontroller::RUNNING) {
+    uint16_t size = hdma_spi1_rx.Instance->NDTR;
+    //uint16_t size = hspi1.hdmarx->Instance->NDTR;
 
     std::cout << "hdma_spi1_rx.Instance->NDTR (" << size << "): ";
     for (int i = 0; i < size; ++i) {
@@ -809,13 +783,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
     }
     std::cout << std::endl;
 
-    slave.exchange();
+//    HAL_SPI_Abort(&hspi1);
+//    __HAL_RCC_SPI1_FORCE_RESET();
+//    __HAL_RCC_SPI1_RELEASE_RESET();
 
-    HAL_SPI_TransmitReceive_DMA(
-            &hspi1,
-            slave.tx_packet_dma.buffer,
-            slave.rx_packet_dma.buffer,
-            sizeof(slave.tx_packet_dma.header.response_data_length)+sizeof(Comms::Comms::comms_packet_header_t));
+    //slave.exchange();
   }
 }
 /* USER CODE END 4 */
@@ -829,6 +801,10 @@ void Error_Handler(void)
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   std::cout << "Error handler was called" << std::endl;
+  state_led.set_color(255,0,0);
+  npxc_state_vfs_light.update();
+  HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_RESET);
+  data.state.microcontroller = State::Microcontroller::ERROR;
   __disable_irq();
   while (1)
   {

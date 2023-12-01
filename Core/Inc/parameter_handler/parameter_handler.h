@@ -11,11 +11,12 @@ class ParameterHandler {
 public:
   ParameterHandler(Parameter::Parameter* parameter_);
 
-  uint8_t InitParameter();
+  void InitParameter();
   uint8_t GetParameter();
   uint8_t SetParameter();
 private:
   Parameter::Parameter* parameter;
+  Parameter::Parameter new_parameter;
   uint8_t check_value = 123;
 };
 
