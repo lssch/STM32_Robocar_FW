@@ -20,25 +20,27 @@ void ParameterHandler::InitParameter() {
   parameter->imu.accel_max_g = Parameter::ImuAccelMaxG::PM_4G;
   parameter->imu.gyro_calibration_samples = 100;
 
-  parameter->vfs.neopixel.enable = true;
-  parameter->vfs.neopixel.color.red = 255;
-  parameter->vfs.neopixel.color.green = 0;
-  parameter->vfs.neopixel.color.blue = 0;
-  parameter->vfs.neopixel.brightness = 10;
+  parameter->vfs.neopixel.enable = 1;
+  parameter->vfs.neopixel.color = {255, 0, 0, 10};
 
   parameter->servo.zero_position = 0;
   parameter->servo.max_steering_angle = 6000;
-  parameter->servo.steering_limits = 3000;
+  parameter->servo.steering_limits = 2500;
 
-  parameter->navlight.color_front.red = 255;
-  parameter->navlight.color_front.green = 255;
-  parameter->navlight.color_front.blue= 255;
-  parameter->navlight.color_back.red = 255;
-  parameter->navlight.color_back.green = 0;
-  parameter->navlight.color_back.blue= 0;
-  parameter->navlight.color_blinker.red = 3*255/4;
-  parameter->navlight.color_blinker.green = 255/4;
-  parameter->navlight.color_blinker.blue= 0;
+  parameter->navlight.color_front = {255, 255, 255, 100};
+  parameter->navlight.color_back = {255, 0, 0, 100};
+  parameter->navlight.color_back = {3*255/4, 255/4, 0, 100};
+
+  parameter->odometry.origin_to_front = 135;
+  parameter->odometry.origin_to_back = 50;
+  parameter->odometry.imu_link = {110,0,0};
+  parameter->odometry.tof_spot_link = {0,0,0};
+  parameter->odometry.tof_cam_link = {0,0,0};
+  parameter->odometry.vfs_link = {0,0,0};
+
+  parameter->operating_modes.distance.setpoint_distance_to_target = 200;
+  parameter->operating_modes.distance.positioning_error_boundaries = 1;
+  parameter->operating_modes.distance.threshold_fine_positioning = 300;
 }
 
 uint8_t ParameterHandler::GetParameter() {
@@ -77,7 +79,7 @@ uint8_t ParameterHandler::GetParameter() {
   parameter_uint8_t += 1;
   parameter->vfs.neopixel.color.blue = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->vfs.neopixel.brightness = *(parameter_uint8_t);
+  parameter->vfs.neopixel.color.alpha = *(parameter_uint8_t);
   parameter_uint8_t += 1;
 
   parameter->navlight.color_front.red = *(parameter_uint8_t);
@@ -147,7 +149,7 @@ uint8_t ParameterHandler::SetParameter() {
           parameter->vfs.neopixel.color.red,
           parameter->vfs.neopixel.color.green,
           parameter->vfs.neopixel.color.blue,
-          parameter->vfs.neopixel.brightness,
+          parameter->vfs.neopixel.color.alpha,
 
           parameter->navlight.color_front.red,
           parameter->navlight.color_front.green,

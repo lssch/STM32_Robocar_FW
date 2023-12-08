@@ -70,12 +70,6 @@ robocar_data_t data;
 
 ParameterHandler parameter_handler{&data.parameter};
 
-// TODO: This code can be eliminated once the parameter handler works
-#include "types/parameter.h"
-Parameter::Servo servo_parameter{.zero_position = 0,
-        .max_steering_angle = 6000,
-        .steering_limits = 3000};
-
 TFLC02::TFLC02 tof_spot{&huart4};
 MPU60X0 imu{&data.parameter.imu, &data.state.imu, &data.data.imu};
 Comms::CommsSlave slave{&hspi1, &data};
@@ -88,8 +82,8 @@ NeoPixel::Group navigation_back{npxc_nav_light.get_pixel(0), {1,2}};
 NeoPixel::Group navigation_left{npxc_nav_light.get_pixel(0), {0,1}};
 NeoPixel::Group navigation_right{npxc_nav_light.get_pixel(0), {2,3}};
 
-Servo servo{&htim4, TIM_CHANNEL_1, &servo_parameter};
-Servo servo_res{&htim4, TIM_CHANNEL_2, &servo_parameter};
+Servo servo{&htim4, TIM_CHANNEL_1, &data.parameter.servo};
+Servo servo_res{&htim4, TIM_CHANNEL_2, &data.parameter.servo};
 TB6612FNG motor{MOTOR_STB_GPIO_Port, MOTOR_STB_Pin,
                 MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,
                 MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,
@@ -164,13 +158,13 @@ int main(void)
   std::cout << "Device is initialising..." << std::endl;
   data.state.microcontroller = State::Microcontroller::INITIALISING;
   state_led.set_brightness(5);
-  state_led.set_color(0,0,255);
+  state_led.set_color(0, 0, 255);
   npxc_state_vfs_light.update();
 
 #pragma region SOFTWARE INITIALISATION
   // TODO: This function should ony be called once to write te correct parameter values into the flash storage
-
   parameter_handler.InitParameter();
+  /*
   if (parameter_handler.SetParameter() != SUCCESS) {
     std::cout << "Could not initialise parameters on flash memory!" << std::endl;
     Error_Handler();
@@ -183,12 +177,12 @@ int main(void)
     Error_Handler();
   }
   std::cout << "Successfully got all parameters from flash memory" << std::endl;
+  */
 #pragma region SOFTWARE INITIALISATION
 
 #pragma region HARDWARE INITIALISATION
   //tof_spot.init();
   if (imu.init(3) != SUCCESS) Error_Handler();
-  std::cout << "Successfully connected to the imu" << std::endl;
 
   // Reset ESP32
   HAL_Delay(100);
@@ -213,7 +207,7 @@ State::State state{&state_led,
 
   state_led.set_color(0, 255, 0);
 
-  vfs_light.set_brightness(data.parameter.vfs.neopixel.enable*data.parameter.vfs.neopixel.brightness);
+  vfs_light.set_brightness(data.parameter.vfs.neopixel.enable * data.parameter.vfs.neopixel.color.alpha);
   vfs_light.set_color(data.parameter.vfs.neopixel.color.red,
                       data.parameter.vfs.neopixel.color.green,
                       data.parameter.vfs.neopixel.color.blue);
@@ -225,13 +219,22 @@ State::State state{&state_led,
   std::cout << "Entering main loop..." << std::endl;
   data.state.microcontroller = State::Microcontroller::RUNNING;
   HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_SET);
-  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+  //HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 
   while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 #pragma region REQUESTS
+    // Check if EMS is triggered
+    if (data.request.emergency_stop) {
+      motor.disable();
+    }
+    // Check if EMS needs to be resetted
+    if (!data.request.emergency_stop and data.request.emergency_stop_reset) {
+      motor.enable();
+    }
+
     // Check if new parameters need to be saved
     if (data.request.safe_parameter) {
       std::cout << "Request to update parameters" << std::endl;
@@ -257,11 +260,31 @@ State::State state{&state_led,
     tof_spot.get_distance(&data.sensor.tof_spot);
 #pragma endregion SENSOR READING
 
-    std::cout << "Mainloop..." << std::endl;
-    std::cout << "Distance: " << std::setprecision(2) << data.sensor.tof_spot.distance << " mm" << std::endl;
-    std::cout << "IMU: (" << data.sensor.imu.accelerometer.x << ", " << data.sensor.imu.accelerometer.y << ", " << data.sensor.imu.accelerometer.z
-              << ") GYRO: (" << data.sensor.imu.gyroscope.x << ", " << data.sensor.imu.gyroscope.y << ", " << data.sensor.imu.gyroscope.z
-              << ") TEMP: " << data.sensor.imu.temperature << " C"<< std::endl;
+#pragma region DATA GENERATIOM
+    data.data.distance_to_target = data.sensor.tof_spot.distance - (data.parameter.odometry.origin_to_front - data.parameter.odometry.tof_spot_link.x);
+#pragma endregion DATA GENERATION
+
+#pragma region STATEMACHINE OPERATINGMODE
+    switch (data.request.operating_mode) {
+      case Request::OperatingMode::MANUAL:
+        servo.move(data.request.controls.steering);
+        motor.ch_a.move(data.request.controls.throttle);
+        break;
+      case Request::OperatingMode::ASSISTED:
+        break;
+      case Request::OperatingMode::DISTANCE:
+        if (data.data.distance_to_target >= (data.parameter.operating_modes.distance.setpoint_distance_to_target - data.parameter.operating_modes.distance.positioning_error_boundaries) &&
+            data.data.distance_to_target <= (data.parameter.operating_modes.distance.setpoint_distance_to_target + data.parameter.operating_modes.distance.positioning_error_boundaries)) {
+          motor.ch_a.brake();
+        } else if (data.data.distance_to_target <= data.parameter.operating_modes.distance.threshold_fine_positioning) {
+          motor.ch_a.move(10);
+        }
+        break;
+      case Request::OperatingMode::AUTONOMOUS:
+        break;
+    }
+#pragma endregion STATEMACHINE OPERATINGMODE
+
   }
   /* USER CODE END 3 */
 }
@@ -781,13 +804,43 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
     for (int i = 0; i < size; ++i) {
       std::cout << +slave.rx_packet_dma.buffer[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout <<std::endl;
 
 //    HAL_SPI_Abort(&hspi1);
 //    __HAL_RCC_SPI1_FORCE_RESET();
 //    __HAL_RCC_SPI1_RELEASE_RESET();
 
     //slave.exchange();
+  }
+}
+
+/*
+void HAL_SPI_RxHalfCpltCallback(SPI_HandleTypeDef *hspi) {
+  if (hspi == &hspi1) {
+    if (slave.exchange() != EXIT_SUCCESS) // packet was invalid
+      HAL_SPI_Receive_DMA(hspi, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+    else {
+      HAL_SPI_Transmit_DMA(hspi, slave.tx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+    }
+  }
+}
+*/
+
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
+  if (hspi == &hspi1) {
+    if (slave.exchange() != EXIT_SUCCESS) // packet was invalid
+      HAL_SPI_Receive_DMA(hspi, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+    else {
+      HAL_SPI_DMAStop(hspi);
+      HAL_SPI_Transmit_DMA(hspi, slave.tx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+    }
+  }
+}
+
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi) {
+  if (hspi == &hspi1) {
+    // Resume the DMA so Rx can continue and Tx will happen when req'd by master
+    HAL_SPI_Receive_DMA(hspi, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
   }
 }
 /* USER CODE END 4 */

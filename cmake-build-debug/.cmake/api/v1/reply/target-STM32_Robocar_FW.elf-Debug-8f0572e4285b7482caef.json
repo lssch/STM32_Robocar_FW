@@ -1,0 +1,1861 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "STM32_Robocar_FW.elf"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"add_link_options",
+			"add_compile_options",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 64,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 60,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 61,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 62,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 29,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 30,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 36,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 49,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 54,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 52,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mcpu=cortex-m4"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mthumb"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mthumb-interwork"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fmessage-length=0"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-Og"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-g"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 9,
+					"define" : "DEBUG"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "STM32F446xx"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "USE_HAL_DRIVER"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Core/Inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				16,
+				36,
+				38,
+				56,
+				76,
+				95,
+				98,
+				100,
+				131,
+				135
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mcpu=cortex-m4"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mthumb"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mthumb-interwork"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fmessage-length=0"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-Og"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-g"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 9,
+					"define" : "DEBUG"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "STM32F446xx"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "USE_HAL_DRIVER"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Core/Inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include"
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				136,
+				137,
+				138,
+				139,
+				140,
+				203,
+				204,
+				205,
+				206,
+				207,
+				208,
+				209,
+				210,
+				211,
+				212,
+				213,
+				214,
+				215,
+				216,
+				217,
+				218,
+				219,
+				220,
+				221
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mcpu=cortex-m4"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mthumb"
+				},
+				{
+					"backtrace" : 5,
+					"fragment" : "-mthumb-interwork"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-ffunction-sections"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fdata-sections"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fno-common"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-fmessage-length=0"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "-x"
+				},
+				{
+					"backtrace" : 7,
+					"fragment" : "assembler-with-cpp"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-Og"
+				},
+				{
+					"backtrace" : 8,
+					"fragment" : "-g"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 9,
+					"define" : "DEBUG"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "STM32F446xx"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "USE_HAL_DRIVER"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Core/Inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include"
+				}
+			],
+			"language" : "ASM",
+			"sourceIndexes" : 
+			[
+				141
+			]
+		}
+	],
+	"id" : "STM32_Robocar_FW.elf::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-Wl,-gc-sections,--print-memory-usage,-Map=/Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.map",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-mcpu=cortex-m4",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-mthumb",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-mthumb-interwork",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-T",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/Users/lssch/git/STM32_Robocar_FW/STM32F446RETX_FLASH.ld",
+				"role" : "flags"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "STM32_Robocar_FW.elf",
+	"nameOnDisk" : "STM32_Robocar_FW.elf",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				127,
+				141,
+				145,
+				167,
+				202,
+				222
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				16,
+				36,
+				38,
+				56,
+				76,
+				95,
+				98,
+				100,
+				131,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				203,
+				204,
+				205,
+				206,
+				207,
+				208,
+				209,
+				210,
+				211,
+				212,
+				213,
+				214,
+				215,
+				216,
+				217,
+				218,
+				219,
+				220,
+				221
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				17,
+				37,
+				39,
+				57,
+				77,
+				96,
+				97,
+				99,
+				101,
+				102,
+				103,
+				125,
+				126,
+				128,
+				129,
+				130,
+				132,
+				133,
+				134,
+				142,
+				143,
+				144,
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153,
+				154,
+				155,
+				156,
+				157,
+				158,
+				159,
+				160,
+				161,
+				162,
+				163,
+				164,
+				165,
+				166,
+				168,
+				169,
+				170,
+				171,
+				172,
+				173,
+				174,
+				175,
+				176,
+				177,
+				178,
+				179,
+				180,
+				181,
+				182,
+				183,
+				184,
+				185,
+				186,
+				187,
+				188,
+				189,
+				190,
+				191,
+				192,
+				193,
+				194,
+				195,
+				196,
+				197,
+				198,
+				199,
+				200,
+				201
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/applypatch-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/fsmonitor-watchman.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/post-update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/pre-applypatch.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/pre-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/pre-merge-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/pre-push.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/pre-rebase.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/pre-receive.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/prepare-commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/push-to-checkout.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/hooks/update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/objects/pack/pack-6b93dd943423fe7cbaf202524748b30fd63f047f.idx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.git/objects/pack/pack-6b93dd943423fe7cbaf202524748b30fd63f047f.pack",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/.gitattributes",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/NeoPixel/NeoPixel.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/NeoPixel.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/NeoPixel/README.md",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/applypatch-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/fsmonitor-watchman.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/post-update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/pre-applypatch.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/pre-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/pre-merge-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/pre-push.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/pre-rebase.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/pre-receive.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/prepare-commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/push-to-checkout.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/hooks/update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/objects/pack/pack-92ac955bca103661f1347ebd5a8aa1b21bce9d95.idx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.git/objects/pack/pack-92ac955bca103661f1347ebd5a8aa1b21bce9d95.pack",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/.gitattributes",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/README.md",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/Servo/Servo.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/Servo/Servo.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/State/State.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/State/State.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/applypatch-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/fsmonitor-watchman.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/post-update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/pre-applypatch.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/pre-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/pre-merge-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/pre-push.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/pre-rebase.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/pre-receive.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/prepare-commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/push-to-checkout.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/hooks/update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/objects/pack/pack-5161b0d6675e3a8ad827e1006e2bb6879a64440e.idx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.git/objects/pack/pack-5161b0d6675e3a8ad827e1006e2bb6879a64440e.pack",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/.gitattributes",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/TB6612FNG/TB6612FNG.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TB6612FNG/TB6612FNG.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.DS_Store",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/applypatch-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/fsmonitor-watchman.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/post-update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/pre-applypatch.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/pre-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/pre-merge-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/pre-push.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/pre-rebase.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/pre-receive.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/prepare-commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/push-to-checkout.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/hooks/update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/objects/pack/pack-920b20c1402b04803f9024430357dc672bc50749.idx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.git/objects/pack/pack-920b20c1402b04803f9024430357dc672bc50749.pack",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/.gitattributes",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/README.md",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/TFLC02/TFLC02.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/TFLC02/TFLC02.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/applypatch-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/fsmonitor-watchman.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/post-update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/pre-applypatch.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/pre-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/pre-merge-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/pre-push.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/pre-rebase.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/pre-receive.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/prepare-commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/push-to-checkout.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/hooks/update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/objects/pack/pack-870a1191a2705bdb5e17daa92c519e088dd745f2.idx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.git/objects/pack/pack-870a1191a2705bdb5e17daa92c519e088dd745f2.pack",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/.gitattributes",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/README.md",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/comms/comms.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/comms/comms.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/main.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/mpu60X0/mpu60X0.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/mpu60X0/mpu60X0.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/parameter_handler/parameter_handler.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/parameter_handler/parameter_handler.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/stm32f4xx_hal_conf.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/stm32f4xx_it.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.DS_Store",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/applypatch-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/fsmonitor-watchman.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/post-update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/pre-applypatch.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/pre-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/pre-merge-commit.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/pre-push.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/pre-rebase.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/pre-receive.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/prepare-commit-msg.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/push-to-checkout.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/hooks/update.sample",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/objects/pack/pack-61d8123c1201122ce4372194d931e84c820738b7.idx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.git/objects/pack/pack-61d8123c1201122ce4372194d931e84c820738b7.pack",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.gitattributes",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.idea/.gitignore",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.idea/modules.xml",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.idea/types.iml",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/.idea/vcs.xml",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/Cartesian.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/Color.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/README.md",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/data/data.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/parameter/parameter.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/request/request.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Inc/types/sensor/sensor.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/sensor/sensor.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/state/state.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Core/Inc/types/types.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Core/Src/main.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Core/Src/stm32f4xx_hal_msp.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Core/Src/stm32f4xx_it.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Core/Src/syscalls.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Core/Src/sysmem.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Core/Src/system_stm32f4xx.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 2,
+			"path" : "Core/Startup/startup_stm32f446retx.s",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Device/ST/STM32F4xx/LICENSE.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_armcc.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_armclang.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_compiler.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_gcc.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_iccarm.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/cmsis_version.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_armv8mbl.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_armv8mml.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm0.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm0plus.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm1.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm23.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm3.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm33.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm4.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_cm7.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_sc000.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/core_sc300.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/mpu_armv7.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/mpu_armv8.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/Include/tz_context.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/CMSIS/LICENSE.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_bus.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_cortex.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_exti.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_i2c.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_rcc.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_system.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/LICENSE.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 1,
+			"path" : "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "STM32F446RETX_FLASH.ld",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

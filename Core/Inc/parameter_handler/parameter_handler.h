@@ -5,7 +5,7 @@
 #ifndef PARAMETER_H
 #define PARAMETER_H
 
-#include "types/parameter.h"
+#include "types/parameter/parameter.h"
 
 class ParameterHandler {
 public:

@@ -2,7 +2,7 @@
 // Created by Lars Schwarz on 25.07.23.
 //
 
-#include <stdexcept>
+//#include <stdexcept>
 #include "mpu60X0.h"
 
 MPU60X0::MPU60X0(Parameter::Imu* parameter_, State::Imu* state_, Data::Imu* data_)
@@ -17,15 +17,16 @@ uint8_t MPU60X0::init(uint8_t trials) {
 
   // Check if MPU is available on I2C
   if (HAL_I2C_IsDeviceReady(&hi2c1, MPU_ADDRESS, trials, MPU_COMMS_TIMEOUT) != HAL_OK)
-    throw std::runtime_error(std::string("No MPU-device available at address: 0x") + std::to_string(MPU_ADDRESS));
+    return ERROR;
+    //throw std::runtime_error(std::string("No MPU-device available at address: 0x") + std::to_string(MPU_ADDRESS));
 
   *state = State::Imu::UNCALIBRATED;
 
   // Set power management register to 0 to wake the sensor up
   tx_data = 0x01;
-  if (HAL_I2C_Mem_Write(&hi2c1, MPU_ADDRESS, PWR_MGMT_1_REG, 1, &tx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK) {
-    throw std::runtime_error(std::string("Device does not response"));
-  }
+  if (HAL_I2C_Mem_Write(&hi2c1, MPU_ADDRESS, PWR_MGMT_1_REG, 1, &tx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
+    return ERROR;
+    //throw std::runtime_error(std::string("Device does not response"));
 
   if (MPU60X0::SetGyroSamplerateDivisor() != SUCCESS) return ERROR;
   if (MPU60X0::SetGyroMaxDps() != SUCCESS) return ERROR;
@@ -139,7 +140,7 @@ uint8_t MPU60X0::GetValues(Sensor::Imu* mpu) {
 
 void MPU60X0::CalibrateGyro() {
   Sensor::Imu mpu{};
-  Sensor::Cartesian sum{};
+  Cartesian3<float> sum{};
 
   *state = State::Imu::CALIBRATING;
 

@@ -22,65 +22,36 @@
   <component name="ChangeListManager">
     <list default="true" id="b23e2835-5514-45be-b740-acfd6ca36358" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/Servo/Servo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/Servo/Servo.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/Servo/Servo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/Servo/Servo.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/TB6612FNG/TB6612FNG.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TB6612FNG/TB6612FNG.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/comms/comms.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/comms/comms.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/stm32f4xx_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32f4xx_it.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/types/parameter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/parameter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/types/sensor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/sensor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/types/state.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/state.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/types/data/data.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/data/data.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/types/parameter/parameter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/parameter/parameter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/types/request/request.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/request/request.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/types/sensor/sensor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/sensor/sensor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/stm32f4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32f4xx_hal_msp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/stm32f4xx_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32f4xx_it.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/STM32_Robocar_FW.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/STM32_Robocar_FW.ioc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-24T19-42-29-0245.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8f41c8082085037f61dc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-0196e1bc1cfb10c3f63d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-12-01T09-09-02-0265.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-STM32_Robocar_FW.elf-Debug-f53d0012d6abcae443ed.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/State/State.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_it.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/syscalls.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/sysmem.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/system_stm32f4xx.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Startup/startup_stm32f446retx.s.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.elf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.elf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.hex" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.hex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.map" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +79,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Core/Inc/types" />
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="ae23c3a4-d8ad-43f1-8ad5-67d1a4d19856" />
@@ -143,6 +114,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;serialmonitor.settings&quot;,
     &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -150,15 +122,19 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Core/Inc" />
+      <recent name="$PROJECT_DIR$/Core/Inc/types/state" />
+      <recent name="$PROJECT_DIR$/Core/Inc/types/request" />
+      <recent name="$PROJECT_DIR$/Core/Inc/types/parameter" />
+      <recent name="$PROJECT_DIR$/Core/Inc/types/data" />
+      <recent name="$PROJECT_DIR$/Core/Inc/types/sensor" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="bool" />
+    </option>
+  </component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.OCD STM32_Robocar_FW">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="STM32_Robocar_FW.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="STM32_Robocar_FW" TARGET_NAME="STM32_Robocar_FW.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="STM32_Robocar_FW" RUN_TARGET_NAME="STM32_Robocar_FW.elf">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -198,7 +174,14 @@
       <workItem from="1701171136294" duration="2356000" />
       <workItem from="1701255098199" duration="19147000" />
       <workItem from="1701354714714" duration="1358000" />
-      <workItem from="1701414468255" duration="7804000" />
+      <workItem from="1701414468255" duration="11970000" />
+      <workItem from="1701775735668" duration="236000" />
+      <workItem from="1701776365695" duration="9103000" />
+      <workItem from="1701804099764" duration="827000" />
+      <workItem from="1701806428811" duration="600000" />
+      <workItem from="1701849760526" duration="14458000" />
+      <workItem from="1701942160235" duration="7552000" />
+      <workItem from="1701957469254" duration="9218000" />
     </task>
     <servers />
   </component>
@@ -212,20 +195,6 @@
     <isAutomaticFoundErrors value="true" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/main.cpp</url>
-          <line>774</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Src/main.cpp</url>
-          <line>188</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="com.jetbrains.cidr.embedded.openocd.conf.type">
         <watch expression="data" />
