@@ -22,12 +22,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <iostream>
-#include <iomanip>
 
 #include "types/types.h"
 #include "parameter_handler/parameter_handler.h"
 #include "mpu60X0/mpu60X0.h"
 #include "TFLC02/TFLC02.h"
+#include "ADNS3080/ADNS3080.h"
 #include "comms/comms.h"
 #include "NeoPixel/NeoPixel.h"
 #include "Servo/Servo.h"
@@ -53,9 +53,11 @@
 I2C_HandleTypeDef hi2c1;
 
 SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_rx;
 DMA_HandleTypeDef hdma_spi1_tx;
 
+TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
@@ -64,6 +66,7 @@ DMA_HandleTypeDef hdma_tim2_up_ch3;
 
 UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart6;
 
 /* USER CODE BEGIN PV */
 robocar_data_t data;
@@ -72,15 +75,12 @@ ParameterHandler parameter_handler{&data.parameter};
 
 TFLC02::TFLC02 tof_spot{&huart4};
 MPU60X0 imu{&data.parameter.imu, &data.state.imu, &data.data.imu};
+ADNS3080 vfs{&hspi2, &data.parameter.vfs};
 Comms::CommsSlave slave{&hspi1, &data};
 NeoPixel::Controller npxc_state_vfs_light{{&htim2, TIM_CHANNEL_1}, NeoPixel::Controller::WS2812, 9};
 NeoPixel::Controller npxc_nav_light{{&htim2, TIM_CHANNEL_3}, NeoPixel::Controller::SK6812, 4};
-NeoPixel::Group state_led{npxc_state_vfs_light.get_pixel(0), 1};
-NeoPixel::Group vfs_light{npxc_state_vfs_light.get_pixel(1), 8};
-NeoPixel::Group navigation_front{npxc_nav_light.get_pixel(0), {0,3}};
-NeoPixel::Group navigation_back{npxc_nav_light.get_pixel(0), {1,2}};
-NeoPixel::Group navigation_left{npxc_nav_light.get_pixel(0), {0,1}};
-NeoPixel::Group navigation_right{npxc_nav_light.get_pixel(0), {2,3}};
+NeoPixel::Group state_led{&npxc_state_vfs_light, 0, 1};
+NeoPixel::Group vfs_light{&npxc_state_vfs_light, 1, 9};
 
 Servo servo{&htim4, TIM_CHANNEL_1, &data.parameter.servo};
 Servo servo_res{&htim4, TIM_CHANNEL_2, &data.parameter.servo};
@@ -103,6 +103,9 @@ static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_UART4_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_SPI2_Init(void);
+static void MX_TIM1_Init(void);
+static void MX_USART6_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -154,9 +157,11 @@ int main(void)
   MX_TIM4_Init();
   MX_UART4_Init();
   MX_I2C1_Init();
+  MX_SPI2_Init();
+  MX_TIM1_Init();
+  MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
   std::cout << "Device is initialising..." << std::endl;
-  data.state.microcontroller = State::Microcontroller::INITIALISING;
   state_led.set_brightness(5);
   state_led.set_color(0, 0, 255);
   npxc_state_vfs_light.update();
@@ -181,7 +186,9 @@ int main(void)
 #pragma region SOFTWARE INITIALISATION
 
 #pragma region HARDWARE INITIALISATION
+  HAL_TIM_Base_Start(&htim1);
   //tof_spot.init();
+  if (vfs.init() != SUCCESS) Error_Handler();
   if (imu.init(3) != SUCCESS) Error_Handler();
 
   // Reset ESP32
@@ -189,68 +196,54 @@ int main(void)
   HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_SET);
   HAL_Delay(10);
   HAL_GPIO_WritePin(ESP32_RESET_GPIO_Port, ESP32_RESET_Pin, GPIO_PIN_RESET);
-
-  // Kick of the DMA to receive a request from the ESP32 slave
-  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
 #pragma endregion HARDWARE INITIALISATION
-
-/*
-State::State state{&state_led,
-                   {ESP32_OK_GPIO_Port, ESP32_OK_Pin},
-                   {ESP32_ERROR_GPIO_Port, ESP32_ERROR_Pin},
-                   {ESP32_RESET_GPIO_Port, ESP32_RESET_Pin}};
-*/
-
-  motor.enable();
   servo.move(0);
-  motor.ch_a.move(0);
 
   state_led.set_color(0, 255, 0);
 
-  vfs_light.set_brightness(data.parameter.vfs.neopixel.enable * data.parameter.vfs.neopixel.color.alpha);
-  vfs_light.set_color(data.parameter.vfs.neopixel.color.red,
-                      data.parameter.vfs.neopixel.color.green,
-                      data.parameter.vfs.neopixel.color.blue);
+  vfs_light.set_brightness(data.parameter.vfs.light_color.alpha);
+  vfs_light.set_color(data.parameter.vfs.light_color.red,
+                      data.parameter.vfs.light_color.green,
+                      data.parameter.vfs.light_color.blue);
   npxc_state_vfs_light.update();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   std::cout << "Entering main loop..." << std::endl;
-  data.state.microcontroller = State::Microcontroller::RUNNING;
-  HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_SET);
-  //HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 
-  while (1) {
+  // Kick of the DMA to receive a request from the ESP32 slave
+  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+  HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_SET);
+
+  int millis = HAL_GetTick();
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "EndlessLoop"
+  while (true) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 #pragma region REQUESTS
-    // Check if EMS is triggered
-    if (data.request.emergency_stop) {
-      motor.disable();
-    }
-    // Check if EMS needs to be resetted
-    if (!data.request.emergency_stop and data.request.emergency_stop_reset) {
-      motor.enable();
-    }
-
     // Check if new parameters need to be saved
     if (data.request.safe_parameter) {
-      std::cout << "Request to update parameters" << std::endl;
-      if (parameter_handler.SetParameter() != SUCCESS) {
+      /*
+      if (parameter_handler.SetParameter() != SUCCESS)
         std::cout << "Could not override the parameters on the flash memory!" << std::endl;
-      } else {
-        data.request.safe_parameter = false;
+      else
         std::cout << "Successfully overwritten all parameters on the flash memory" << std::endl;
-      }
+        */
+      vfs_light.set_brightness(data.parameter.vfs.light_color.alpha);
+      vfs_light.set_color(data.parameter.vfs.light_color.red,
+                          data.parameter.vfs.light_color.green,
+                          data.parameter.vfs.light_color.blue);
+      npxc_state_vfs_light.update();
     }
 
     // Check if the IMU needs calibration
     if (data.request.calibrate_imu) {
       std::cout << "Don't move! Gyroscope is calibrating..." << std::endl;
       imu.CalibrateGyro();
-      data.request.calibrate_imu = false;
       std::cout << "Gyroscope calibrated to new values" << std::endl;
     }
 #pragma endregion REQUESTS
@@ -258,34 +251,71 @@ State::State state{&state_led,
 #pragma region SENSOR READING
     imu.GetValues(&data.sensor.imu);
     tof_spot.get_distance(&data.sensor.tof_spot);
+    vfs.motionBurst(&data.sensor.vfs);
+    //vfs.frameCapture();
 #pragma endregion SENSOR READING
 
 #pragma region DATA GENERATIOM
     data.data.distance_to_target = data.sensor.tof_spot.distance - (data.parameter.odometry.origin_to_front - data.parameter.odometry.tof_spot_link.x);
+    data.data.position.x += data.sensor.vfs.motion.x;
+    data.data.position.y += data.sensor.vfs.motion.y;
+
+    if (data.request.reset_odomety) {
+      std::cout << "Resetting odometry, origin will be moved to the current position..." << std::endl;
+      data.data.position = {0,0};
+    }
 #pragma endregion DATA GENERATION
 
-#pragma region STATEMACHINE OPERATINGMODE
-    switch (data.request.operating_mode) {
-      case Request::OperatingMode::MANUAL:
-        servo.move(data.request.controls.steering);
-        motor.ch_a.move(data.request.controls.throttle);
+#pragma region ROBOCAR STATE
+    switch (data.state.robocar) {
+      case State::Robocar::INITIALISING:
+        motor.enable();
+
+        // Automatic state transition
+        data.state.robocar = State::Robocar::RUNNING;
         break;
-      case Request::OperatingMode::ASSISTED:
-        break;
-      case Request::OperatingMode::DISTANCE:
-        if (data.data.distance_to_target >= (data.parameter.operating_modes.distance.setpoint_distance_to_target - data.parameter.operating_modes.distance.positioning_error_boundaries) &&
-            data.data.distance_to_target <= (data.parameter.operating_modes.distance.setpoint_distance_to_target + data.parameter.operating_modes.distance.positioning_error_boundaries)) {
-          motor.ch_a.brake();
-        } else if (data.data.distance_to_target <= data.parameter.operating_modes.distance.threshold_fine_positioning) {
-          motor.ch_a.move(10);
+
+      case State::Robocar::RUNNING:
+        #pragma region STATEMACHINE OPERATINGMODE
+        switch (data.request.operating_mode) {
+          case Request::OperatingMode::MANUAL:
+            servo.move(data.request.controls.steering);
+            motor.ch_a.move(data.request.controls.throttle);
+            break;
+
+          case Request::OperatingMode::ASSISTED:
+            break;
+
+          case Request::OperatingMode::DISTANCE:
+            if (data.data.distance_to_target >= (data.parameter.operating_modes.distance.setpoint_distance_to_target - data.parameter.operating_modes.distance.positioning_error_boundaries) &&
+                data.data.distance_to_target <= (data.parameter.operating_modes.distance.setpoint_distance_to_target + data.parameter.operating_modes.distance.positioning_error_boundaries)) {
+              motor.ch_a.brake();
+            } else if (data.data.distance_to_target <= data.parameter.operating_modes.distance.threshold_fine_positioning) {
+              motor.ch_a.move(10);
+            }
+            break;
+
+          case Request::OperatingMode::AUTONOMOUS:
+            break;
         }
+        #pragma endregion STATEMACHINE OPERATINGMODE
+
+        // State transition based on EMS signal
+        if (data.request.emergency_stop)
+          data.state.robocar = State::Robocar::EMS;
         break;
-      case Request::OperatingMode::AUTONOMOUS:
+
+      case State::Robocar::EMS:
+        motor.disable();
+
+        // State transition based on EMS reset signal
+        if (not data.request.emergency_stop)
+            data.state.robocar = State::Robocar::INITIALISING;
         break;
     }
-#pragma endregion STATEMACHINE OPERATINGMODE
-
+#pragma endregion ROBOCAR STATE
   }
+#pragma clang diagnostic pop
   /* USER CODE END 3 */
 }
 
@@ -411,6 +441,90 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
+
+}
+
+/**
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI2_Init(void)
+{
+
+  /* USER CODE BEGIN SPI2_Init 0 */
+
+  /* USER CODE END SPI2_Init 0 */
+
+  /* USER CODE BEGIN SPI2_Init 1 */
+
+  /* USER CODE END SPI2_Init 1 */
+  /* SPI2 parameter configuration*/
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi2.Init.CLKPhase = SPI_PHASE_2EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 10;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI2_Init 2 */
+
+  /* USER CODE END SPI2_Init 2 */
+
+}
+
+/**
+  * @brief TIM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM1_Init(void)
+{
+
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 90-1;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 65535;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
 
 }
 
@@ -670,6 +784,39 @@ static void MX_USART1_UART_Init(void)
 }
 
 /**
+  * @brief USART6 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART6_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART6_Init 0 */
+
+  /* USER CODE END USART6_Init 0 */
+
+  /* USER CODE BEGIN USART6_Init 1 */
+
+  /* USER CODE END USART6_Init 1 */
+  huart6.Instance = USART6;
+  huart6.Init.BaudRate = 115200;
+  huart6.Init.WordLength = UART_WORDLENGTH_8B;
+  huart6.Init.StopBits = UART_STOPBITS_1;
+  huart6.Init.Parity = UART_PARITY_NONE;
+  huart6.Init.Mode = UART_MODE_TX_RX;
+  huart6.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart6.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART6_Init 2 */
+
+  /* USER CODE END USART6_Init 2 */
+
+}
+
+/**
   * Enable DMA controller clock
   */
 static void MX_DMA_Init(void)
@@ -712,10 +859,23 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(VFS_RESET_GPIO_Port, VFS_RESET_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOC, MOTOR1_IN1_Pin|MOTOR1_IN2_Pin|MOTOR_STB_Pin|MOTOR2_IN1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, ESP32_COMM_START_Pin|ESP32_RES1_Pin|ESP32_RESET_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, ESP32_COMM_START_Pin|ESP32_RES1_Pin|ESP32_RES3_Pin|ESP32_RESET_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(VFS_SPI_CS_GPIO_Port, VFS_SPI_CS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin : VFS_RESET_Pin */
+  GPIO_InitStruct.Pin = VFS_RESET_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(VFS_RESET_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : MOTOR1_IN1_Pin MOTOR1_IN2_Pin MOTOR2_IN1_Pin */
   GPIO_InitStruct.Pin = MOTOR1_IN1_Pin|MOTOR1_IN2_Pin|MOTOR2_IN1_Pin;
@@ -756,17 +916,31 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : VFS_SPI_CS_Pin */
+  GPIO_InitStruct.Pin = VFS_SPI_CS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  HAL_GPIO_Init(VFS_SPI_CS_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pins : USR_CONFIG4_Pin USR_BUTTON_Pin */
   GPIO_InitStruct.Pin = USR_CONFIG4_Pin|USR_BUTTON_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : MOTOR2_IN2_Pin */
-  GPIO_InitStruct.Pin = MOTOR2_IN2_Pin;
+  /*Configure GPIO pins : MOTOR2_IN2_Pin VFS_EXTERNAL_LIGHT_Pin */
+  GPIO_InitStruct.Pin = MOTOR2_IN2_Pin|VFS_EXTERNAL_LIGHT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(MOTOR2_IN2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ESP32_RES3_Pin */
+  GPIO_InitStruct.Pin = ESP32_RES3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(ESP32_RES3_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : ESP32_RESET_Pin */
   GPIO_InitStruct.Pin = ESP32_RESET_Pin;
@@ -791,40 +965,16 @@ return ch;
 }
 }
 
+void delay_us (uint16_t us) {
+  // set the counter value a 0
+  __HAL_TIM_SET_COUNTER(&htim1, 0);
+  // wait for the counter to reach the us input in the parameter
+  while (__HAL_TIM_GET_COUNTER(&htim1) < us);
+}
+
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
   if (htim == &htim2) npxc_state_vfs_light.dma_finished();
 }
-
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-  if (GPIO_Pin == ESP32_SPI_CS_Pin && data.state.microcontroller == State::Microcontroller::RUNNING) {
-    uint16_t size = hdma_spi1_rx.Instance->NDTR;
-    //uint16_t size = hspi1.hdmarx->Instance->NDTR;
-
-    std::cout << "hdma_spi1_rx.Instance->NDTR (" << size << "): ";
-    for (int i = 0; i < size; ++i) {
-      std::cout << +slave.rx_packet_dma.buffer[i] << " ";
-    }
-    std::cout <<std::endl;
-
-//    HAL_SPI_Abort(&hspi1);
-//    __HAL_RCC_SPI1_FORCE_RESET();
-//    __HAL_RCC_SPI1_RELEASE_RESET();
-
-    //slave.exchange();
-  }
-}
-
-/*
-void HAL_SPI_RxHalfCpltCallback(SPI_HandleTypeDef *hspi) {
-  if (hspi == &hspi1) {
-    if (slave.exchange() != EXIT_SUCCESS) // packet was invalid
-      HAL_SPI_Receive_DMA(hspi, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
-    else {
-      HAL_SPI_Transmit_DMA(hspi, slave.tx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
-    }
-  }
-}
-*/
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
   if (hspi == &hspi1) {
@@ -857,10 +1007,8 @@ void Error_Handler(void)
   state_led.set_color(255,0,0);
   npxc_state_vfs_light.update();
   HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_RESET);
-  data.state.microcontroller = State::Microcontroller::ERROR;
   __disable_irq();
-  while (1)
-  {
+  while (1) {
   }
   /* USER CODE END Error_Handler_Debug */
 }

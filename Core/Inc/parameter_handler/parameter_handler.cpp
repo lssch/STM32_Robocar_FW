@@ -20,8 +20,11 @@ void ParameterHandler::InitParameter() {
   parameter->imu.accel_max_g = Parameter::ImuAccelMaxG::PM_4G;
   parameter->imu.gyro_calibration_samples = 100;
 
-  parameter->vfs.neopixel.enable = 1;
-  parameter->vfs.neopixel.color = {255, 0, 0, 10};
+  parameter->vfs.height = 18;
+  parameter->vfs.measured_target_length = 4;
+  parameter->vfs.led_shutter = 1;
+  parameter->vfs.high_resolution = 1;
+  parameter->vfs.light_color = {255, 0, 0, 20};
 
   parameter->servo.zero_position = 0;
   parameter->servo.max_steering_angle = 6000;
@@ -71,15 +74,13 @@ uint8_t ParameterHandler::GetParameter() {
   parameter->imu.gyro_calibration_samples = *(parameter_uint8_t);
   parameter_uint8_t += 1;
 
-  parameter->vfs.neopixel.enable = *(parameter_uint8_t);
+  parameter->vfs.light_color.red = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->vfs.neopixel.color.red = *(parameter_uint8_t);
+  parameter->vfs.light_color.green = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->vfs.neopixel.color.green = *(parameter_uint8_t);
+  parameter->vfs.light_color.blue = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->vfs.neopixel.color.blue = *(parameter_uint8_t);
-  parameter_uint8_t += 1;
-  parameter->vfs.neopixel.color.alpha = *(parameter_uint8_t);
+  parameter->vfs.light_color.alpha = *(parameter_uint8_t);
   parameter_uint8_t += 1;
 
   parameter->navlight.color_front.red = *(parameter_uint8_t);
@@ -145,11 +146,10 @@ uint8_t ParameterHandler::SetParameter() {
           static_cast<uint8_t>(parameter->imu.accel_max_g),
           parameter->imu.gyro_calibration_samples,
 
-          parameter->vfs.neopixel.enable,
-          parameter->vfs.neopixel.color.red,
-          parameter->vfs.neopixel.color.green,
-          parameter->vfs.neopixel.color.blue,
-          parameter->vfs.neopixel.color.alpha,
+          parameter->vfs.light_color.red,
+          parameter->vfs.light_color.green,
+          parameter->vfs.light_color.blue,
+          parameter->vfs.light_color.alpha,
 
           parameter->navlight.color_front.red,
           parameter->navlight.color_front.green,

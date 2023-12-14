@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Core/Inc/ADNS3080" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/NeoPixel" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/Servo" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Core/Inc/TB6612FNG" vcs="Git" />

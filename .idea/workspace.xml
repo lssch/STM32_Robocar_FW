@@ -21,31 +21,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b23e2835-5514-45be-b740-acfd6ca36358" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/Servo/Servo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/Servo/Servo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/Servo/Servo.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/Servo/Servo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/ADNS3080/ADNS3080.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/ADNS3080/ADNS3080.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/ADNS3080/ADNS3080.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/ADNS3080/ADNS3080.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/NeoPixel/NeoPixel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/NeoPixel/NeoPixel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/NeoPixel/NeoPixel.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/NeoPixel/NeoPixel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/State/State.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/State/State.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/TB6612FNG/TB6612FNG.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TB6612FNG/TB6612FNG.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/TFLC02/TFLC02.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/mpu60X0/mpu60X0.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/parameter_handler/parameter_handler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/types/data/data.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/data/data.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/types/parameter/parameter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/parameter/parameter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/types/request/request.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/request/request.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/types/sensor/sensor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/sensor/sensor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/types/request/request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/types/request/request.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/stm32f4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32f4xx_hal_msp.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/STM32_Robocar_FW.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/STM32_Robocar_FW.ioc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8f41c8082085037f61dc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-0196e1bc1cfb10c3f63d.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-12-01T09-09-02-0265.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-STM32_Robocar_FW.elf-Debug-f53d0012d6abcae443ed.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-22c737cb60c77a789a2b.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-fc039fceb7767161188d.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-12-07T13-28-16-0194.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-STM32_Robocar_FW.elf-Debug-8f0572e4285b7482caef.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.26.4/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/State/State.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/State/State.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor/sensor.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor/sensor.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.elf" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/STM32_Robocar_FW.elf" afterDir="false" />
@@ -66,7 +77,7 @@
       <list>
         <option value="212" />
         <option value="92" />
-        <option value="366" />
+        <option value="262" />
       </list>
     </option>
     <option name="columnOrder">
@@ -79,7 +90,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Core/Inc/types" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="ae23c3a4-d8ad-43f1-8ad5-67d1a4d19856" />
@@ -96,12 +107,16 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2YR98vfgCKyxBcT8So95FQqV9m3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
@@ -182,6 +197,12 @@
       <workItem from="1701849760526" duration="14458000" />
       <workItem from="1701942160235" duration="7552000" />
       <workItem from="1701957469254" duration="9218000" />
+      <workItem from="1702040025131" duration="606000" />
+      <workItem from="1702196739428" duration="4755000" />
+      <workItem from="1702282052276" duration="22698000" />
+      <workItem from="1702368010530" duration="3468000" />
+      <workItem from="1702394892401" duration="9578000" />
+      <workItem from="1702455070347" duration="25744000" />
     </task>
     <servers />
   </component>
@@ -193,6 +214,9 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
