@@ -32,6 +32,7 @@
 #include "NeoPixel/NeoPixel.h"
 #include "Servo/Servo.h"
 #include "TB6612FNG/TB6612FNG.h"
+#include "Odometry/Odometry.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,10 +58,11 @@ SPI_HandleTypeDef hspi2;
 DMA_HandleTypeDef hdma_spi1_rx;
 DMA_HandleTypeDef hdma_spi1_tx;
 
-TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
+TIM_HandleTypeDef htim10;
+TIM_HandleTypeDef htim11;
 DMA_HandleTypeDef hdma_tim2_ch1;
 DMA_HandleTypeDef hdma_tim2_up_ch3;
 
@@ -72,6 +74,7 @@ UART_HandleTypeDef huart6;
 robocar_data_t data;
 
 ParameterHandler parameter_handler{&data.parameter};
+Odometry odometry{htim11, data.sensor, data.data, data.parameter};
 
 TFLC02::TFLC02 tof_spot{&huart4};
 MPU60X0 imu{&data.parameter.imu, &data.state.imu, &data.data.imu};
@@ -104,8 +107,9 @@ static void MX_TIM4_Init(void);
 static void MX_UART4_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_SPI2_Init(void);
-static void MX_TIM1_Init(void);
 static void MX_USART6_UART_Init(void);
+static void MX_TIM10_Init(void);
+static void MX_TIM11_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -158,8 +162,9 @@ int main(void)
   MX_UART4_Init();
   MX_I2C1_Init();
   MX_SPI2_Init();
-  MX_TIM1_Init();
   MX_USART6_UART_Init();
+  MX_TIM10_Init();
+  MX_TIM11_Init();
   /* USER CODE BEGIN 2 */
   std::cout << "Device is initialising..." << std::endl;
   state_led.set_brightness(5);
@@ -186,7 +191,7 @@ int main(void)
 #pragma region SOFTWARE INITIALISATION
 
 #pragma region HARDWARE INITIALISATION
-  HAL_TIM_Base_Start(&htim1);
+  HAL_TIM_Base_Start(&htim10);
   //tof_spot.init();
   if (vfs.init() != SUCCESS) Error_Handler();
   if (imu.init(3) != SUCCESS) Error_Handler();
@@ -216,8 +221,6 @@ int main(void)
   HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
   HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_SET);
 
-  int millis = HAL_GetTick();
-
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "EndlessLoop"
   while (true) {
@@ -240,6 +243,11 @@ int main(void)
       npxc_state_vfs_light.update();
     }
 
+    if (data.request.reset_odomety) {
+      std::cout << "Resetting odometry, origin will be moved to the current position..." << std::endl;
+      odometry.reset();
+    }
+
     // Check if the IMU needs calibration
     if (data.request.calibrate_imu) {
       std::cout << "Don't move! Gyroscope is calibrating..." << std::endl;
@@ -256,14 +264,7 @@ int main(void)
 #pragma endregion SENSOR READING
 
 #pragma region DATA GENERATIOM
-    data.data.distance_to_target = data.sensor.tof_spot.distance - (data.parameter.odometry.origin_to_front - data.parameter.odometry.tof_spot_link.x);
-    data.data.position.x += data.sensor.vfs.motion.x;
-    data.data.position.y += data.sensor.vfs.motion.y;
-
-    if (data.request.reset_odomety) {
-      std::cout << "Resetting odometry, origin will be moved to the current position..." << std::endl;
-      data.data.position = {0,0};
-    }
+    odometry.update();
 #pragma endregion DATA GENERATION
 
 #pragma region ROBOCAR STATE
@@ -483,52 +484,6 @@ static void MX_SPI2_Init(void)
 }
 
 /**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM1_Init(void)
-{
-
-  /* USER CODE BEGIN TIM1_Init 0 */
-
-  /* USER CODE END TIM1_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM1_Init 1 */
-
-  /* USER CODE END TIM1_Init 1 */
-  htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 90-1;
-  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 65535;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM1_Init 2 */
-
-  /* USER CODE END TIM1_Init 2 */
-
-}
-
-/**
   * @brief TIM2 Initialization Function
   * @param None
   * @retval None
@@ -714,6 +669,68 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 2 */
   HAL_TIM_MspPostInit(&htim4);
+
+}
+
+/**
+  * @brief TIM10 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM10_Init(void)
+{
+
+  /* USER CODE BEGIN TIM10_Init 0 */
+
+  /* USER CODE END TIM10_Init 0 */
+
+  /* USER CODE BEGIN TIM10_Init 1 */
+
+  /* USER CODE END TIM10_Init 1 */
+  htim10.Instance = TIM10;
+  htim10.Init.Prescaler = 90-1;
+  htim10.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim10.Init.Period = 65535;
+  htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim10.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM10_Init 2 */
+
+  /* USER CODE END TIM10_Init 2 */
+
+}
+
+/**
+  * @brief TIM11 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM11_Init(void)
+{
+
+  /* USER CODE BEGIN TIM11_Init 0 */
+
+  /* USER CODE END TIM11_Init 0 */
+
+  /* USER CODE BEGIN TIM11_Init 1 */
+
+  /* USER CODE END TIM11_Init 1 */
+  htim11.Instance = TIM11;
+  htim11.Init.Prescaler = 90-1;
+  htim11.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim11.Init.Period = 65535;
+  htim11.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim11.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim11) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM11_Init 2 */
+
+  /* USER CODE END TIM11_Init 2 */
 
 }
 
@@ -967,9 +984,9 @@ return ch;
 
 void delay_us (uint16_t us) {
   // set the counter value a 0
-  __HAL_TIM_SET_COUNTER(&htim1, 0);
+  __HAL_TIM_SET_COUNTER(&htim10, 0);
   // wait for the counter to reach the us input in the parameter
-  while (__HAL_TIM_GET_COUNTER(&htim1) < us);
+  while (__HAL_TIM_GET_COUNTER(&htim10) < us);
 }
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
