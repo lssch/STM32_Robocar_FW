@@ -7,8 +7,8 @@
 
 #include <vector>
 #include "stm32f4xx_hal.h"
-#include "types/sensor/sensor.h"
-#include "types/parameter/parameter.h"
+#include "types/sensor.h"
+#include "types/parameter.h"
 
 #define A010_PACKET_HEADER_1 0x00
 #define A010_PACKET_HEADER_2 0xFF

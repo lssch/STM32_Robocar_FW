@@ -62,7 +62,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/lssch/git/STM32_Robocar_FW -B/Users/lssch/git/STM32_Robocar_FW/cmake-build-debug
+  command = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/lssch/git/robocar/STM32_Robocar_FW -B/Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

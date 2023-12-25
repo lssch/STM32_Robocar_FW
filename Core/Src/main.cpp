@@ -33,6 +33,7 @@
 #include "NeoPixel/NeoPixel.h"
 #include "Servo/Servo.h"
 #include "TB6612FNG/TB6612FNG.h"
+#include "SpeedController/SpeedController.h"
 #include "Odometry/Odometry.h"
 /* USER CODE END Includes */
 
@@ -64,6 +65,7 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim10;
 TIM_HandleTypeDef htim11;
+TIM_HandleTypeDef htim12;
 DMA_HandleTypeDef hdma_tim2_ch1;
 DMA_HandleTypeDef hdma_tim2_up_ch3;
 
@@ -77,7 +79,7 @@ robocar_data_t data;
 ParameterHandler parameter_handler{&data.parameter};
 Odometry odometry{htim11, data.sensor, data.data, data.parameter};
 
-TFLC02::TFLC02 tof_spot{huart4};
+TFLC02::TFLC02 tof_spot{huart4, data.state.tof_spot};
 MPU60X0 imu{hi2c1, data.parameter.imu, data.state.imu, &data.data.imu};
 ADNS3080 vfs{&hspi2, &data.parameter.vfs};
 A010 tof_cam{huart6};
@@ -96,6 +98,7 @@ TB6612FNG motor{MOTOR_STB_GPIO_Port, MOTOR_STB_Pin,
                 MOTOR2_IN1_GPIO_Port, MOTOR2_IN1_Pin,
                 MOTOR2_IN2_GPIO_Port, MOTOR2_IN2_Pin,
                 &htim3, TIM_CHANNEL_1, &htim3, TIM_CHANNEL_2};
+SpeedController speed_controller{htim12, motor, data.data};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -113,6 +116,7 @@ static void MX_SPI2_Init(void);
 static void MX_USART6_UART_Init(void);
 static void MX_TIM10_Init(void);
 static void MX_TIM11_Init(void);
+static void MX_TIM12_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -168,6 +172,7 @@ int main(void)
   MX_USART6_UART_Init();
   MX_TIM10_Init();
   MX_TIM11_Init();
+  MX_TIM12_Init();
   /* USER CODE BEGIN 2 */
   std::cout << "Device is initialising..." << std::endl;
   state_led.set_brightness(5);
@@ -195,8 +200,10 @@ int main(void)
 
 #pragma region HARDWARE INITIALISATION
   HAL_TIM_Base_Start(&htim10);
+  HAL_TIM_Base_Start(&htim11);
+  HAL_TIM_Base_Start(&htim12);
   tof_spot.init();
-  tof_cam.init();
+  //tof_cam.init();
   if (vfs.init() != SUCCESS) Error_Handler();
   if (imu.init(3) != SUCCESS) Error_Handler();
 
@@ -222,7 +229,7 @@ int main(void)
   std::cout << "Entering main loop..." << std::endl;
 
   // Kick of the DMA to receive a request from the ESP32 slave
-  //HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
   HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_SET);
 
 #pragma clang diagnostic push
@@ -259,7 +266,7 @@ int main(void)
     imu.GetValues(data.sensor.imu);
     tof_spot.get_distance(data.sensor.tof_spot);
     vfs.motionBurst(&data.sensor.vfs);
-    tof_cam.get_frame(data.sensor.tof_cam);
+    //tof_cam.get_frame(data.sensor.tof_cam);
 #pragma endregion SENSOR READING
 
 #pragma region DATA GENERATIOM
@@ -276,29 +283,44 @@ int main(void)
         break;
 
       case State::Robocar::RUNNING:
-        #pragma region STATEMACHINE OPERATINGMODE
+#pragma region STATEMACHINE OPERATINGMODE
         switch (data.request.operating_mode) {
           case Request::OperatingMode::MANUAL:
             servo.move(data.request.controls.steering);
             motor.ch_a.move(data.request.controls.throttle);
+            //motor.ch_a.move(data.request.controls.throttle);
             break;
 
           case Request::OperatingMode::ASSISTED:
+            if (data.data.position.y > 0)
+              servo.move(500);
+            else if (data.data.position.y < 0)
+              servo.move(-500);
+            else
+              servo.move(0);
+
+            motor.ch_a.move(data.request.controls.throttle);
+
             break;
 
           case Request::OperatingMode::DISTANCE:
-            if (data.data.distance_to_target >= (data.parameter.operating_modes.distance.setpoint_distance_to_target - data.parameter.operating_modes.distance.positioning_error_boundaries) &&
-                data.data.distance_to_target <= (data.parameter.operating_modes.distance.setpoint_distance_to_target + data.parameter.operating_modes.distance.positioning_error_boundaries)) {
+            servo.move(data.request.controls.steering);
+            if (data.data.distance_positioning_error <= data.parameter.operating_modes.distance.positioning_error_boundaries and
+                data.data.distance_positioning_error >= -data.parameter.operating_modes.distance.positioning_error_boundaries)
               motor.ch_a.brake();
-            } else if (data.data.distance_to_target <= data.parameter.operating_modes.distance.threshold_fine_positioning) {
-              motor.ch_a.move(15);
-            }
+            else if (odometry.distance_to_target() > data.parameter.operating_modes.distance.threshold_fine_positioning)
+              motor.ch_a.move(20);
+            else
+              if (data.data.distance_positioning_error > 0)
+                motor.ch_a.move(10);
+              else
+                motor.ch_a.move(-10);
             break;
 
           case Request::OperatingMode::AUTONOMOUS:
             break;
         }
-        #pragma endregion STATEMACHINE OPERATINGMODE
+#pragma endregion STATEMACHINE OPERATINGMODE
 
         // State transition based on EMS signal
         if (data.request.emergency_stop)
@@ -310,11 +332,12 @@ int main(void)
 
         // State transition based on EMS reset signal
         if (not data.request.emergency_stop)
-            data.state.robocar = State::Robocar::INITIALISING;
+          data.state.robocar = State::Robocar::INITIALISING;
         break;
     }
 #pragma endregion ROBOCAR STATE
-  //std::cout << data.sensor.tof_cam << std::endl;
+
+  //speed_controller.update();
   }
 #pragma clang diagnostic pop
   /* USER CODE END 3 */
@@ -423,7 +446,7 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 1 */
 
   /* USER CODE END SPI1_Init 1 */
-  /* SPI1 _parameter configuration*/
+  /* SPI1 parameter configuration*/
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_SLAVE;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
@@ -460,7 +483,7 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 1 */
 
   /* USER CODE END SPI2_Init 1 */
-  /* SPI2 _parameter configuration*/
+  /* SPI2 parameter configuration*/
   hspi2.Instance = SPI2;
   hspi2.Init.Mode = SPI_MODE_MASTER;
   hspi2.Init.Direction = SPI_DIRECTION_2LINES;
@@ -735,6 +758,44 @@ static void MX_TIM11_Init(void)
 }
 
 /**
+  * @brief TIM12 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM12_Init(void)
+{
+
+  /* USER CODE BEGIN TIM12_Init 0 */
+
+  /* USER CODE END TIM12_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+
+  /* USER CODE BEGIN TIM12_Init 1 */
+
+  /* USER CODE END TIM12_Init 1 */
+  htim12.Instance = TIM12;
+  htim12.Init.Prescaler = 90-1;
+  htim12.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim12.Init.Period = 65535;
+  htim12.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim12.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim12) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim12, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM12_Init 2 */
+
+  /* USER CODE END TIM12_Init 2 */
+
+}
+
+/**
   * @brief UART4 Initialization Function
   * @param None
   * @retval None
@@ -787,7 +848,7 @@ static void MX_USART1_UART_Init(void)
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.Mode = UART_MODE_TX;
   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
   if (HAL_UART_Init(&huart1) != HAL_OK)

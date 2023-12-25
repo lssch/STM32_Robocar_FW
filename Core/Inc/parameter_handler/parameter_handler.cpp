@@ -36,10 +36,10 @@ void ParameterHandler::InitParameter() {
 
   parameter->odometry.origin_to_front = 135;
   parameter->odometry.origin_to_back = 50;
-  parameter->odometry.imu_link = {110,0,0};
-  parameter->odometry.tof_spot_link = {0,0,0};
-  parameter->odometry.tof_cam_link = {0,0,0};
-  parameter->odometry.vfs_link = {0,0,0};
+  parameter->odometry.imu_link = {-50,0,0};
+  parameter->odometry.tof_spot_link = {100,0,0};
+  parameter->odometry.tof_cam_link = {50,0,50};
+  parameter->odometry.vfs_link = {-5,0,0};
 
   parameter->operating_modes.distance.setpoint_distance_to_target = 200;
   parameter->operating_modes.distance.positioning_error_boundaries = 1;

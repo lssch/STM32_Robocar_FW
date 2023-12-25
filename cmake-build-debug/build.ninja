@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/
+cmake_ninja_workdir = /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target STM32_Robocar_FW.elf
 
@@ -49,323 +49,331 @@ cmake_ninja_workdir = /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/
 
 build cmake_object_order_depends_target_STM32_Robocar_FW.elf: phony || CMakeFiles/STM32_Robocar_FW.elf.dir
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/A010/A010.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/A010/A010.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/A010/A010.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/A010/A010.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/A010/A010.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/A010
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/ADNS3080/ADNS3080.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/ADNS3080/ADNS3080.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/ADNS3080/ADNS3080.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/ADNS3080/ADNS3080.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/ADNS3080/ADNS3080.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/ADNS3080
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/NeoPixel/NeoPixel.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/NeoPixel/NeoPixel.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Odometry/Odometry.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/Odometry/Odometry.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Odometry/Odometry.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/Odometry/Odometry.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Odometry/Odometry.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Odometry
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/Servo/Servo.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/Servo/Servo.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/TB6612FNG/TB6612FNG.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/SpeedController/SpeedController.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/SpeedController/SpeedController.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+  DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
+  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/SpeedController/SpeedController.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
+  OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
+  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/SpeedController
+
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/TB6612FNG/TB6612FNG.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/TFLC02/TFLC02.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/TFLC02/TFLC02.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/comms/comms.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/comms/comms.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/mpu60X0/mpu60X0.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/mpu60X0/mpu60X0.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/parameter_handler/parameter_handler.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/parameter_handler/parameter_handler.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/data/data.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/types/data/data.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/data.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/types/data.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
-  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/data/data.cpp.obj.d
+  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/data.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
-  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/data
+  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/request/request.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/types/request/request.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/request.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/types/request.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
-  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/request/request.cpp.obj.d
+  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/request.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
-  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/request
+  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor/sensor.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/types/sensor/sensor.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/types/sensor.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
-  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor/sensor.cpp.obj.d
+  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
-  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor
+  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/state/state.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Inc/types/state/state.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/state.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc/types/state.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
-  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/state/state.cpp.obj.d
+  DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/state.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
-  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/state
+  OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Src/main.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj: CXX_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Src/main.cpp || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Src/stm32f4xx_hal_msp.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Src/stm32f4xx_hal_msp.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_it.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Src/stm32f4xx_it.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_it.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Src/stm32f4xx_it.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_it.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/syscalls.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Src/syscalls.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/syscalls.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Src/syscalls.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/syscalls.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/sysmem.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Src/sysmem.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/sysmem.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Src/sysmem.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/sysmem.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/system_stm32f4xx.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Src/system_stm32f4xx.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/system_stm32f4xx.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Src/system_stm32f4xx.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/system_stm32f4xx.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Startup/startup_stm32f446retx.s.obj: ASM_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Core/Startup/startup_stm32f446retx.s || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Startup/startup_stm32f446retx.s.obj: ASM_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Core/Startup/startup_stm32f446retx.s || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Startup/startup_stm32f446retx.s.obj.d
   FLAGS = -g -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -x assembler-with-cpp -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Startup
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
-build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
+build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj: C_COMPILER__STM32_Robocar_FW.2eelf_unscanned_Debug /Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c || cmake_object_order_depends_target_STM32_Robocar_FW.elf
   DEFINES = -DDEBUG -DSTM32F446xx -DUSE_HAL_DRIVER
   DEP_FILE = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always -mcpu=cortex-m4 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -fno-common -fmessage-length=0 -Og -g
-  INCLUDES = -I/Users/lssch/git/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/STM32_Robocar_FW/Drivers/CMSIS/Include
+  INCLUDES = -I/Users/lssch/git/robocar/STM32_Robocar_FW/Core/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/lssch/git/robocar/STM32_Robocar_FW/Drivers/CMSIS/Include
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
   OBJECT_FILE_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src
 
@@ -377,11 +385,11 @@ build CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32
 #############################################
 # Link the executable STM32_Robocar_FW.elf
 
-build STM32_Robocar_FW.elf: CXX_EXECUTABLE_LINKER__STM32_Robocar_FW.2eelf_Debug CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/A010/A010.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/ADNS3080/ADNS3080.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Odometry/Odometry.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/data/data.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/request/request.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor/sensor.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/state/state.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_it.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/syscalls.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/sysmem.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/system_stm32f4xx.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Startup/startup_stm32f446retx.s.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
+build STM32_Robocar_FW.elf: CXX_EXECUTABLE_LINKER__STM32_Robocar_FW.2eelf_Debug CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/A010/A010.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/ADNS3080/ADNS3080.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/NeoPixel/NeoPixel.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Odometry/Odometry.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/Servo/Servo.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/SpeedController/SpeedController.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TB6612FNG/TB6612FNG.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/TFLC02/TFLC02.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/comms/comms.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/mpu60X0/mpu60X0.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/parameter_handler/parameter_handler.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/data.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/request.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/sensor.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Inc/types/state.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/main.cpp.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_hal_msp.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/stm32f4xx_it.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/syscalls.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/sysmem.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Src/system_stm32f4xx.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Core/Startup/startup_stm32f446retx.s.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c.obj CMakeFiles/STM32_Robocar_FW.elf.dir/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c.obj
   FLAGS = -g
-  LINK_FLAGS = -Wl,-gc-sections,--print-memory-usage,-Map=/Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.map -mcpu=cortex-m4 -mthumb -mthumb-interwork -T /Users/lssch/git/STM32_Robocar_FW/STM32F446RETX_FLASH.ld
+  LINK_FLAGS = -Wl,-gc-sections,--print-memory-usage,-Map=/Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.map -mcpu=cortex-m4 -mthumb -mthumb-interwork -T /Users/lssch/git/robocar/STM32_Robocar_FW/STM32F446RETX_FLASH.ld
   OBJECT_DIR = CMakeFiles/STM32_Robocar_FW.elf.dir
-  POST_BUILD = cd /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug && arm-none-eabi-objcopy -Oihex /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.elf /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.hex && arm-none-eabi-objcopy -Obinary /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.elf /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.bin
+  POST_BUILD = cd /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug && arm-none-eabi-objcopy -Oihex /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.elf /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.hex && arm-none-eabi-objcopy -Obinary /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.elf /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug/STM32_Robocar_FW.bin
   PRE_LINK = :
   TARGET_FILE = STM32_Robocar_FW.elf
   TARGET_PDB = STM32_Robocar_FW.elf.dbg
@@ -391,7 +399,7 @@ build STM32_Robocar_FW.elf: CXX_EXECUTABLE_LINKER__STM32_Robocar_FW.2eelf_Debug 
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -402,7 +410,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/lssch/git/STM32_Robocar_FW -B/Users/lssch/git/STM32_Robocar_FW/cmake-build-debug
+  COMMAND = cd /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/lssch/git/robocar/STM32_Robocar_FW -B/Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -418,7 +426,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /Users/lssch/git/STM32_Robocar_FW/cmake-build-debug
+# Folder: /Users/lssch/git/robocar/STM32_Robocar_FW/cmake-build-debug
 
 build all: phony STM32_Robocar_FW.elf
 
@@ -429,14 +437,14 @@ build all: phony STM32_Robocar_FW.elf
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeASMInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-ASM.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Generic.cmake /Users/lssch/git/STM32_Robocar_FW/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeASMCompiler.cmake CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeASMInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-ASM.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Generic.cmake /Users/lssch/git/robocar/STM32_Robocar_FW/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeASMCompiler.cmake CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeASMInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-ASM.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Generic.cmake /Users/lssch/git/STM32_Robocar_FW/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeASMCompiler.cmake CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
+build /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeASMInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-ASM.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Generic.cmake /Users/lssch/git/robocar/STM32_Robocar_FW/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeASMCompiler.cmake CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
 
 
 #############################################

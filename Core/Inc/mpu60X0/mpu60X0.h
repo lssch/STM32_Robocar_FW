@@ -6,10 +6,10 @@
 #define MPU6050_H
 
 #include "stm32f4xx_hal.h"
-#include "types/parameter/parameter.h"
-#include "types/state/state.h"
-#include "types/sensor/sensor.h"
-#include "types/data/data.h"
+#include "types/parameter.h"
+#include "types/state.h"
+#include "types/sensor.h"
+#include "types/data.h"
 
 #define MPU_ADDRESS 0x68 << 1
 #define MPU_PWR_MGMT_1_REG 0x6B

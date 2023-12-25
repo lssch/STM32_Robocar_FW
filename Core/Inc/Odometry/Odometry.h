@@ -6,13 +6,15 @@
 #define STM32_ROBOCAR_FW_ODOMETRY_H
 
 #include "stm32f4xx_hal.h"
-#include "types/sensor/sensor.h"
-#include "types/data/data.h"
-#include "types/parameter/parameter.h"
+#include "types/sensor.h"
+#include "types/data.h"
+#include "types/parameter.h"
 
 class Odometry {
 public:
   Odometry(TIM_HandleTypeDef &htim, Sensor::Sensor &sensor, Data::Data &data, Parameter::Parameter &parameter);
+  int16_t distance_to_target();
+  void positioning_error();
   void update();
   void reset();
 private:
@@ -22,7 +24,7 @@ private:
   Sensor::Sensor &_sensor;
   Data::Data &_data;
   Parameter::Parameter &_parameter;
-  Cartesian2<float> _vfs_motion_old;
+  Cartesian2<float> _position_old;
 };
 
 
