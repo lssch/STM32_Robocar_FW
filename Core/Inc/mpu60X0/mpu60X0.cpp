@@ -5,28 +5,27 @@
 //#include <stdexcept>
 #include "mpu60X0.h"
 
-MPU60X0::MPU60X0(Parameter::Imu* parameter_, State::Imu* state_, Data::Imu* data_)
-  : parameter(parameter_),
-    state(state_),
-    data(data_) {
-  *state = State::Imu::DISCONNECTED;
+MPU60X0::MPU60X0(I2C_HandleTypeDef &hi2c, const Parameter::Imu &parameter, State::Imu &state, Data::Imu *data)
+  :  _hi2c(hi2c),
+    _parameter(parameter),
+    _state(state),
+    _data(data) {
+  _state = State::Imu::DISCONNECTED;
 }
 
 uint8_t MPU60X0::init(uint8_t trials) {
   uint8_t tx_data;
 
   // Check if MPU is available on I2C
-  if (HAL_I2C_IsDeviceReady(&hi2c1, MPU_ADDRESS, trials, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_IsDeviceReady(&_hi2c, MPU_ADDRESS, trials, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
-    //throw std::runtime_error(std::string("No MPU-device available at address: 0x") + std::to_string(MPU_ADDRESS));
 
-  *state = State::Imu::UNCALIBRATED;
+  _state = State::Imu::UNCALIBRATED;
 
   // Set power management register to 0 to wake the sensor up
   tx_data = 0x01;
-  if (HAL_I2C_Mem_Write(&hi2c1, MPU_ADDRESS, PWR_MGMT_1_REG, 1, &tx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_Mem_Write(&_hi2c, MPU_ADDRESS, MPU_PWR_MGMT_1_REG, 1, &tx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
-    //throw std::runtime_error(std::string("Device does not response"));
 
   if (MPU60X0::SetGyroSamplerateDivisor() != SUCCESS) return ERROR;
   if (MPU60X0::SetGyroMaxDps() != SUCCESS) return ERROR;
@@ -38,13 +37,13 @@ uint8_t MPU60X0::init(uint8_t trials) {
 uint8_t MPU60X0::SetGyroMaxDps() {
   uint8_t rxtx_data;
 
-  if (HAL_I2C_Mem_Read(&hi2c1, MPU_ADDRESS, GYRO_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_Mem_Read(&_hi2c, MPU_ADDRESS, MPU_GYRO_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
 
   // Set all DPS bits to zero
   rxtx_data &= 0b11100000;
 
-  switch (parameter->gyro_max_dps) {
+  switch (_parameter.gyro_max_dps) {
     case Parameter::ImuGyproMaxDps::PM_250_DPS:
       rxtx_data |= 0b00000000;
       break;
@@ -59,16 +58,16 @@ uint8_t MPU60X0::SetGyroMaxDps() {
       break;
   }
 
-  if (HAL_I2C_Mem_Write(&hi2c1, MPU_ADDRESS, GYRO_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_Mem_Write(&_hi2c, MPU_ADDRESS, MPU_GYRO_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
 
   return SUCCESS;
 }
 
 uint8_t MPU60X0::SetGyroSamplerateDivisor() {
-  uint8_t tx_data = parameter->gyro_samplerate_divisor;
+  uint8_t tx_data = _parameter.gyro_samplerate_divisor;
 
-  if (HAL_I2C_Mem_Write(&hi2c1, MPU_ADDRESS, GYRO_CONFIG_REG, 1, &tx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_Mem_Write(&_hi2c, MPU_ADDRESS, MPU_GYRO_CONFIG_REG, 1, &tx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
 
   return SUCCESS;
@@ -77,13 +76,13 @@ uint8_t MPU60X0::SetGyroSamplerateDivisor() {
 uint8_t MPU60X0::SetAccelerometerMaxG() {
   uint8_t rxtx_data;
 
-  if (HAL_I2C_Mem_Read(&hi2c1, MPU_ADDRESS, ACCEL_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_Mem_Read(&_hi2c, MPU_ADDRESS, MPU_ACCEL_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
 
   // Set all DPS bits to zero
   rxtx_data &= 0b1110000;
 
-  switch (parameter->accel_max_g) {
+  switch (_parameter.accel_max_g) {
     case Parameter::ImuAccelMaxG::PM_2G:
       rxtx_data |= 0b00000000;
       break;
@@ -98,7 +97,7 @@ uint8_t MPU60X0::SetAccelerometerMaxG() {
       break;
   }
 
-  if (HAL_I2C_Mem_Write(&hi2c1, MPU_ADDRESS, ACCEL_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_Mem_Write(&_hi2c, MPU_ADDRESS, MPU_ACCEL_CONFIG_REG, 1, &rxtx_data, 1, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
 
   return SUCCESS;
@@ -106,57 +105,58 @@ uint8_t MPU60X0::SetAccelerometerMaxG() {
 
 
 
-uint8_t MPU60X0::GetValues(Sensor::Imu* mpu) {
-  uint8_t rx_data[14];
+uint8_t MPU60X0::GetValues(Sensor::Imu &imu) {
+  std::array<uint8_t, 14> rx_data{};
 
   // Get the current values
-  if (HAL_I2C_Mem_Read(&hi2c1, MPU_ADDRESS, ACCEL_X_REG, 1, rx_data, 14, MPU_COMMS_TIMEOUT) != HAL_OK)
+  if (HAL_I2C_Mem_Read(&_hi2c, MPU_ADDRESS, MPU_ACCEL_X_REG, 1, rx_data.data(), 14, MPU_COMMS_TIMEOUT) != HAL_OK)
     return ERROR;
 
-  int16_t accel[3] = {
-          (int16_t)(rx_data[0] << 8 | rx_data[1]),
-          (int16_t)(rx_data[2] << 8 | rx_data[3]),
-          (int16_t)(rx_data[4] << 8 | rx_data[5])};
-  int16_t temp = (int16_t)(rx_data[6] << 8 | rx_data[7]);
-  int16_t gyro[3] = {
-          (int16_t)(rx_data[8] << 8 | rx_data[9]),
-          (int16_t)(rx_data[10] << 8 | rx_data[11]),
-          (int16_t)(rx_data[12] << 8 | rx_data[13]),
+  Cartesian3<float> accelerometer{
+    .x = static_cast<float>(static_cast<int16_t>(rx_data.at(0) << 8 | rx_data.at(1))),
+    .y = static_cast<float>(static_cast<int16_t>(rx_data.at(2) << 8 | rx_data.at(3))),
+    .z = static_cast<float>(static_cast<int16_t>(rx_data.at(4) << 8 | rx_data.at(5))),
+  };
+  float temperature = static_cast<float>(static_cast<int16_t>(rx_data.at(6) << 8 | rx_data.at(7)));
+  Cartesian3<float> gyroscope{
+    .x = static_cast<float>(static_cast<int16_t>(rx_data.at(8) << 8 | rx_data.at(9))),
+    .y = static_cast<float>(static_cast<int16_t>(rx_data.at(10) << 8 | rx_data.at(11))),
+    .z = static_cast<float>(static_cast<int16_t>(rx_data.at(12) << 8 | rx_data.at(13))),
   };
 
-  mpu->accelerometer.x = (float) accel[0] / 0x7FFF * (float) parameter->accel_max_g;
-  mpu->accelerometer.y = (float) accel[1] / 0x7FFF * (float) parameter->accel_max_g;
-  mpu->accelerometer.z = (float) accel[2] / 0x7FFF * (float) parameter->accel_max_g;
+  imu.accelerometer.x = accelerometer.x * static_cast<float>(_parameter.accel_max_g) / 0x7FFF;
+  imu.accelerometer.y = accelerometer.y * static_cast<float>(_parameter.accel_max_g) / 0x7FFF;
+  imu.accelerometer.z = accelerometer.z * static_cast<float>(_parameter.accel_max_g) / 0x7FFF;
 
-  mpu->temperature = (float) temp / 340 + 36.53f;
+  imu.temperature = temperature / 340 + 36.53f;
 
-  mpu->gyroscope.x = (float) gyro[0] / 0x7FFF * (float) parameter->gyro_max_dps - data->gyro_calibration_values.x;
-  mpu->gyroscope.y = (float) gyro[1] / 0x7FFF * (float) parameter->gyro_max_dps - data->gyro_calibration_values.y;
-  mpu->gyroscope.z = (float) gyro[2] / 0x7FFF * (float) parameter->gyro_max_dps - data->gyro_calibration_values.z;
+  imu.gyroscope.x = gyroscope.x * (static_cast<float>(_parameter.gyro_max_dps) - _data->gyro_calibration_values.x) / 0x7FFF;
+  imu.gyroscope.y = gyroscope.y * (static_cast<float>(_parameter.gyro_max_dps) - _data->gyro_calibration_values.y) / 0x7FFF;
+  imu.gyroscope.z = gyroscope.z * (static_cast<float>(_parameter.gyro_max_dps) - _data->gyro_calibration_values.z) / 0x7FFF;
 
   return SUCCESS;
 }
 
 
 void MPU60X0::CalibrateGyro() {
-  Sensor::Imu mpu{};
+  Sensor::Imu imu{};
   Cartesian3<float> sum{};
 
-  *state = State::Imu::CALIBRATING;
+  _state = State::Imu::CALIBRATING;
 
-  for (uint8_t i = 0; i < parameter->gyro_calibration_samples; ++i) {
-    MPU60X0::GetValues(&mpu);
+  for (uint8_t i = 0; i < _parameter.gyro_calibration_samples; ++i) {
+    MPU60X0::GetValues(imu);
 
-    sum.x += mpu.gyroscope.x;
-    sum.y += mpu.gyroscope.y;
-    sum.z += mpu.gyroscope.z;
+    sum.x += imu.gyroscope.x;
+    sum.y += imu.gyroscope.y;
+    sum.z += imu.gyroscope.z;
 
-    HAL_Delay(20);
+    HAL_Delay(10);
   }
 
-  data->gyro_calibration_values.x = sum.x / (float) parameter->gyro_calibration_samples + data->gyro_calibration_values.x;
-  data->gyro_calibration_values.y = sum.y / (float) parameter->gyro_calibration_samples + data->gyro_calibration_values.y;
-  data->gyro_calibration_values.z = sum.z / (float) parameter->gyro_calibration_samples + data->gyro_calibration_values.z;
+  _data->gyro_calibration_values.x = sum.x / (static_cast<float>(_parameter.gyro_calibration_samples) + _data->gyro_calibration_values.x);
+  _data->gyro_calibration_values.y = sum.y / (static_cast<float>(_parameter.gyro_calibration_samples) + _data->gyro_calibration_values.y);
+  _data->gyro_calibration_values.z = sum.z / (static_cast<float>(_parameter.gyro_calibration_samples) + _data->gyro_calibration_values.z);
 
-  *state = State::Imu::CALIBRATED;
+  _state = State::Imu::CALIBRATED;
 }

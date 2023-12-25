@@ -28,6 +28,7 @@
 #include "mpu60X0/mpu60X0.h"
 #include "TFLC02/TFLC02.h"
 #include "ADNS3080/ADNS3080.h"
+#include "A010/A010.h"
 #include "comms/comms.h"
 #include "NeoPixel/NeoPixel.h"
 #include "Servo/Servo.h"
@@ -76,17 +77,19 @@ robocar_data_t data;
 ParameterHandler parameter_handler{&data.parameter};
 Odometry odometry{htim11, data.sensor, data.data, data.parameter};
 
-TFLC02::TFLC02 tof_spot{&huart4};
-MPU60X0 imu{&data.parameter.imu, &data.state.imu, &data.data.imu};
+TFLC02::TFLC02 tof_spot{huart4};
+MPU60X0 imu{hi2c1, data.parameter.imu, data.state.imu, &data.data.imu};
 ADNS3080 vfs{&hspi2, &data.parameter.vfs};
+A010 tof_cam{huart6};
+
 Comms::CommsSlave slave{&hspi1, &data};
+
 NeoPixel::Controller npxc_state_vfs_light{{&htim2, TIM_CHANNEL_1}, NeoPixel::Controller::WS2812, 9};
-NeoPixel::Controller npxc_nav_light{{&htim2, TIM_CHANNEL_3}, NeoPixel::Controller::SK6812, 4};
 NeoPixel::Group state_led{&npxc_state_vfs_light, 0, 1};
 NeoPixel::Group vfs_light{&npxc_state_vfs_light, 1, 9};
 
-Servo servo{&htim4, TIM_CHANNEL_1, &data.parameter.servo};
-Servo servo_res{&htim4, TIM_CHANNEL_2, &data.parameter.servo};
+Servo servo{htim4, TIM_CHANNEL_1, data.parameter.servo};
+Servo servo_res{htim4, TIM_CHANNEL_2, data.parameter.servo};
 TB6612FNG motor{MOTOR_STB_GPIO_Port, MOTOR_STB_Pin,
                 MOTOR1_IN1_GPIO_Port, MOTOR1_IN1_Pin,
                 MOTOR1_IN2_GPIO_Port, MOTOR1_IN2_Pin,
@@ -172,7 +175,7 @@ int main(void)
   npxc_state_vfs_light.update();
 
 #pragma region SOFTWARE INITIALISATION
-  // TODO: This function should ony be called once to write te correct parameter values into the flash storage
+  // TODO: This function should ony be called once to write te correct _parameter values into the flash storage
   parameter_handler.InitParameter();
   /*
   if (parameter_handler.SetParameter() != SUCCESS) {
@@ -192,7 +195,8 @@ int main(void)
 
 #pragma region HARDWARE INITIALISATION
   HAL_TIM_Base_Start(&htim10);
-  //tof_spot.init();
+  tof_spot.init();
+  tof_cam.init();
   if (vfs.init() != SUCCESS) Error_Handler();
   if (imu.init(3) != SUCCESS) Error_Handler();
 
@@ -218,7 +222,7 @@ int main(void)
   std::cout << "Entering main loop..." << std::endl;
 
   // Kick of the DMA to receive a request from the ESP32 slave
-  HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
+  //HAL_SPI_Receive_DMA(&hspi1, slave.rx_packet_dma.buffer, sizeof(Comms::Comms::comms_packet_t));
   HAL_GPIO_WritePin(ESP32_COMM_START_GPIO_Port, ESP32_COMM_START_Pin, GPIO_PIN_SET);
 
 #pragma clang diagnostic push
@@ -243,24 +247,19 @@ int main(void)
       npxc_state_vfs_light.update();
     }
 
-    if (data.request.reset_odomety) {
-      std::cout << "Resetting odometry, origin will be moved to the current position..." << std::endl;
+    if (data.request.reset_odomety)
       odometry.reset();
-    }
 
-    // Check if the IMU needs calibration
-    if (data.request.calibrate_imu) {
-      std::cout << "Don't move! Gyroscope is calibrating..." << std::endl;
+    if (data.request.calibrate_imu)
       imu.CalibrateGyro();
-      std::cout << "Gyroscope calibrated to new values" << std::endl;
-    }
+
 #pragma endregion REQUESTS
 
 #pragma region SENSOR READING
-    imu.GetValues(&data.sensor.imu);
-    tof_spot.get_distance(&data.sensor.tof_spot);
+    imu.GetValues(data.sensor.imu);
+    tof_spot.get_distance(data.sensor.tof_spot);
     vfs.motionBurst(&data.sensor.vfs);
-    //vfs.frameCapture();
+    tof_cam.get_frame(data.sensor.tof_cam);
 #pragma endregion SENSOR READING
 
 #pragma region DATA GENERATIOM
@@ -292,7 +291,7 @@ int main(void)
                 data.data.distance_to_target <= (data.parameter.operating_modes.distance.setpoint_distance_to_target + data.parameter.operating_modes.distance.positioning_error_boundaries)) {
               motor.ch_a.brake();
             } else if (data.data.distance_to_target <= data.parameter.operating_modes.distance.threshold_fine_positioning) {
-              motor.ch_a.move(10);
+              motor.ch_a.move(15);
             }
             break;
 
@@ -315,6 +314,7 @@ int main(void)
         break;
     }
 #pragma endregion ROBOCAR STATE
+  //std::cout << data.sensor.tof_cam << std::endl;
   }
 #pragma clang diagnostic pop
   /* USER CODE END 3 */
@@ -423,7 +423,7 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 1 */
 
   /* USER CODE END SPI1_Init 1 */
-  /* SPI1 parameter configuration*/
+  /* SPI1 _parameter configuration*/
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_SLAVE;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
@@ -460,7 +460,7 @@ static void MX_SPI2_Init(void)
   /* USER CODE BEGIN SPI2_Init 1 */
 
   /* USER CODE END SPI2_Init 1 */
-  /* SPI2 parameter configuration*/
+  /* SPI2 _parameter configuration*/
   hspi2.Instance = SPI2;
   hspi2.Init.Mode = SPI_MODE_MASTER;
   hspi2.Init.Direction = SPI_DIRECTION_2LINES;
@@ -985,7 +985,7 @@ return ch;
 void delay_us (uint16_t us) {
   // set the counter value a 0
   __HAL_TIM_SET_COUNTER(&htim10, 0);
-  // wait for the counter to reach the us input in the parameter
+  // wait for the counter to reach the us input in the _parameter
   while (__HAL_TIM_GET_COUNTER(&htim10) < us);
 }
 

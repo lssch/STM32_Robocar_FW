@@ -47,9 +47,9 @@ void ParameterHandler::InitParameter() {
 }
 
 uint8_t ParameterHandler::GetParameter() {
-  uint8_t* parameter_uint8_t = (uint8_t *) 0x08060000;
-  uint16_t* parameter_uint16_t = (uint16_t *) 0x08060000;
-  uint32_t* parameter_uint32_t = (uint32_t *) 0x08060000;
+  uint8_t* parameter_uint8_t = (uint8_t *) 0x08000000;
+  uint16_t* parameter_uint16_t = (uint16_t *) 0x08000000;
+  uint32_t* parameter_uint32_t = (uint32_t *) 0x08000000;
 
   for (int i = 0; i < 20; ++i) {
     std::cout << "Parameter " << i << ": "<< +*parameter_uint8_t++ << std::endl;
