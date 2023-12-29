@@ -118,9 +118,9 @@ HAL_TickFreqTypeDef uwTickFreq = HAL_TICK_FREQ_DEFAULT;  /* 1KHz */
       (+) De-Initializes common part of the HAL.
       (+) Configure the time base source to have 1ms time base with a dedicated 
           Tick interrupt priority. 
-        (++) SysTick timer is used by default as source of time base, but user
+        (++) SysTick _timer is used by default as source of time base, but user
              can eventually implement his proper time base source (a general purpose 
-             timer for example or other time source), keeping in mind that Time base 
+             _timer for example or other time source), keeping in mind that Time base
              duration should be kept 1ms since PPP_TIMEOUT_VALUEs are defined and 
              handled in milliseconds basis.
         (++) Time base configuration function (HAL_InitTick ()) is called automatically 
@@ -240,7 +240,7 @@ __weak void HAL_MspDeInit(void)
   *        Tick interrupt priority.
   * @note This function is called  automatically at the beginning of program after
   *       reset by HAL_Init() or at any time when clock is reconfigured  by HAL_RCC_ClockConfig().
-  * @note In the default implementation, SysTick timer is the source of time base. 
+  * @note In the default implementation, SysTick _timer is the source of time base.
   *       It is used to generate interrupts at regular time intervals. 
   *       Care must be taken if HAL_Delay() is called from a peripheral ISR process, 
   *       The SysTick interrupt must have higher priority (numerically lower)
@@ -378,7 +378,7 @@ HAL_TickFreqTypeDef HAL_GetTickFreq(void)
 /**
   * @brief This function provides minimum delay (in milliseconds) based 
   *        on variable incremented.
-  * @note In the default implementation , SysTick timer is the source of time base.
+  * @note In the default implementation , SysTick _timer is the source of time base.
   *       It is used to generate interrupts at regular time intervals where uwTick
   *       is incremented.
   * @note This function is declared as __weak to be overwritten in case of other
@@ -404,7 +404,7 @@ __weak void HAL_Delay(uint32_t Delay)
 
 /**
   * @brief Suspend Tick increment.
-  * @note In the default implementation , SysTick timer is the source of time base. It is
+  * @note In the default implementation , SysTick _timer is the source of time base. It is
   *       used to generate interrupts at regular time intervals. Once HAL_SuspendTick()
   *       is called, the SysTick interrupt will be disabled and so Tick increment 
   *       is suspended.
@@ -420,7 +420,7 @@ __weak void HAL_SuspendTick(void)
 
 /**
   * @brief Resume Tick increment.
-  * @note In the default implementation , SysTick timer is the source of time base. It is
+  * @note In the default implementation , SysTick _timer is the source of time base. It is
   *       used to generate interrupts at regular time intervals. Once HAL_ResumeTick()
   *       is called, the SysTick interrupt will be enabled and so Tick increment 
   *       is resumed.

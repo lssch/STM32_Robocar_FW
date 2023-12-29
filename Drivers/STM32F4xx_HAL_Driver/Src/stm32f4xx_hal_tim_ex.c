@@ -31,9 +31,9 @@
         (++) Output Compare
         (++) PWM generation (Edge and Center-aligned Mode)
         (++) One-pulse mode output
-    (#) Synchronization circuit to control the timer with external signals and to
+    (#) Synchronization circuit to control the _timer with external signals and to
         interconnect several timers together.
-    (#) Break input to put the timer output signals in reset state or in a known state.
+    (#) Break input to put the _timer output signals in reset state or in a known state.
     (#) Supports incremental (quadrature) encoder and hall-sensor circuitry for
         positioning purposes
 
@@ -128,8 +128,8 @@ static void TIM_CCxNChannelCmd(TIM_TypeDef *TIMx, uint32_t Channel, uint32_t Cha
   */
 /**
   * @brief  Initializes the TIM Hall Sensor Interface and initialize the associated handle.
-  * @note   When the timer instance is initialized in Hall Sensor Interface mode,
-  *         timer channels 1 and channel 2 are reserved and cannot be used for
+  * @note   When the _timer instance is initialized in Hall Sensor Interface mode,
+  *         _timer channels 1 and channel 2 are reserved and cannot be used for
   *         other purpose.
   * @param  htim TIM Hall Sensor Interface handle
   * @param  sConfig TIM Hall Sensor configuration structure
@@ -1769,7 +1769,7 @@ HAL_StatusTypeDef HAL_TIMEx_OnePulseN_Stop_IT(TIM_HandleTypeDef *htim, uint32_t 
 
       (+) Configure Complementary channels, break features and dead time.
       (+) Configure Master synchronization.
-      (+) Configure timer remapping capabilities.
+      (+) Configure _timer remapping capabilities.
 
 @endverbatim
   * @{

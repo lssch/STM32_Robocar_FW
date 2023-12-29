@@ -53,7 +53,7 @@
            (++) Output Compare
            (++) PWM generation (Edge and Center-aligned Mode)
            (++) One-pulse mode output
-       (#) Synchronization circuit to control the timer with external signals and to interconnect
+       (#) Synchronization circuit to control the _timer with external signals and to interconnect
             several timers together.
        (#) Supports incremental encoder for positioning purposes
 
@@ -257,7 +257,7 @@ static HAL_StatusTypeDef TIM_SlaveTimer_SetConfig(TIM_HandleTypeDef *htim,
   * @brief  Initializes the TIM Time base Unit according to the specified
   *         parameters in the TIM_HandleTypeDef and initialize the associated handle.
   * @note   Switching from Center Aligned counter mode to Edge counter mode (or reverse)
-  *         requires a timer reset to avoid unexpected direction
+  *         requires a _timer reset to avoid unexpected direction
   *         due to DIR bit readonly in center aligned mode.
   *         Ex: call @ref HAL_TIM_Base_DeInit() before HAL_TIM_Base_Init()
   * @param  htim TIM Base handle
@@ -640,7 +640,7 @@ HAL_StatusTypeDef HAL_TIM_Base_Stop_DMA(TIM_HandleTypeDef *htim)
   * @brief  Initializes the TIM Output Compare according to the specified
   *         parameters in the TIM_HandleTypeDef and initializes the associated handle.
   * @note   Switching from Center Aligned counter mode to Edge counter mode (or reverse)
-  *         requires a timer reset to avoid unexpected direction
+  *         requires a _timer reset to avoid unexpected direction
   *         due to DIR bit readonly in center aligned mode.
   *         Ex: call @ref HAL_TIM_OC_DeInit() before HAL_TIM_OC_Init()
   * @param  htim TIM Output Compare handle
@@ -1303,7 +1303,7 @@ HAL_StatusTypeDef HAL_TIM_OC_Stop_DMA(TIM_HandleTypeDef *htim, uint32_t Channel)
   * @brief  Initializes the TIM PWM Time Base according to the specified
   *         parameters in the TIM_HandleTypeDef and initializes the associated handle.
   * @note   Switching from Center Aligned counter mode to Edge counter mode (or reverse)
-  *         requires a timer reset to avoid unexpected direction
+  *         requires a _timer reset to avoid unexpected direction
   *         due to DIR bit readonly in center aligned mode.
   *         Ex: call @ref HAL_TIM_PWM_DeInit() before HAL_TIM_PWM_Init()
   * @param  htim TIM PWM handle
@@ -1965,7 +1965,7 @@ HAL_StatusTypeDef HAL_TIM_PWM_Stop_DMA(TIM_HandleTypeDef *htim, uint32_t Channel
   * @brief  Initializes the TIM Input Capture Time base according to the specified
   *         parameters in the TIM_HandleTypeDef and initializes the associated handle.
   * @note   Switching from Center Aligned counter mode to Edge counter mode (or reverse)
-  *         requires a timer reset to avoid unexpected direction
+  *         requires a _timer reset to avoid unexpected direction
   *         due to DIR bit readonly in center aligned mode.
   *         Ex: call @ref HAL_TIM_IC_DeInit() before HAL_TIM_IC_Init()
   * @param  htim TIM Input Capture handle
@@ -2606,10 +2606,10 @@ HAL_StatusTypeDef HAL_TIM_IC_Stop_DMA(TIM_HandleTypeDef *htim, uint32_t Channel)
   * @brief  Initializes the TIM One Pulse Time Base according to the specified
   *         parameters in the TIM_HandleTypeDef and initializes the associated handle.
   * @note   Switching from Center Aligned counter mode to Edge counter mode (or reverse)
-  *         requires a timer reset to avoid unexpected direction
+  *         requires a _timer reset to avoid unexpected direction
   *         due to DIR bit readonly in center aligned mode.
   *         Ex: call @ref HAL_TIM_OnePulse_DeInit() before HAL_TIM_OnePulse_Init()
-  * @note   When the timer instance is initialized in One Pulse mode, timer
+  * @note   When the _timer instance is initialized in One Pulse mode, _timer
   *         channels 1 and channel 2 are reserved and cannot be used for other
   *         purpose.
   * @param  htim TIM One Pulse handle
@@ -2996,13 +2996,13 @@ HAL_StatusTypeDef HAL_TIM_OnePulse_Stop_IT(TIM_HandleTypeDef *htim, uint32_t Out
 /**
   * @brief  Initializes the TIM Encoder Interface and initialize the associated handle.
   * @note   Switching from Center Aligned counter mode to Edge counter mode (or reverse)
-  *         requires a timer reset to avoid unexpected direction
+  *         requires a _timer reset to avoid unexpected direction
   *         due to DIR bit readonly in center aligned mode.
   *         Ex: call @ref HAL_TIM_Encoder_DeInit() before HAL_TIM_Encoder_Init()
   * @note   Encoder mode and External clock mode 2 are not compatible and must not be selected together
   *         Ex: A call for @ref HAL_TIM_Encoder_Init will erase the settings of @ref HAL_TIM_ConfigClockSource
   *         using TIM_CLOCKSOURCE_ETRMODE2 and vice versa
-  * @note   When the timer instance is initialized in Encoder mode, timer
+  * @note   When the _timer instance is initialized in Encoder mode, _timer
   *         channels 1 and channel 2 are reserved and cannot be used for other
   *         purpose.
   * @param  htim TIM Encoder Interface handle
@@ -5116,8 +5116,8 @@ HAL_StatusTypeDef HAL_TIM_DMABurst_ReadStop(TIM_HandleTypeDef *htim, uint32_t Bu
   *            @arg TIM_EVENTSOURCE_TRIGGER: Timer Trigger Event source
   *            @arg TIM_EVENTSOURCE_BREAK: Timer Break event source
   * @note   Basic timers can only generate an update event.
-  * @note   TIM_EVENTSOURCE_COM is relevant only with advanced timer instances.
-  * @note   TIM_EVENTSOURCE_BREAK are relevant only for timer instances
+  * @note   TIM_EVENTSOURCE_COM is relevant only with advanced _timer instances.
+  * @note   TIM_EVENTSOURCE_BREAK are relevant only for _timer instances
   *         supporting a break input.
   * @retval HAL status
   */
@@ -5318,7 +5318,7 @@ HAL_StatusTypeDef HAL_TIM_ConfigClockSource(TIM_HandleTypeDef *htim, TIM_ClockCo
 
     case TIM_CLOCKSOURCE_ETRMODE1:
     {
-      /* Check whether or not the timer instance supports external trigger input mode 1 (ETRF)*/
+      /* Check whether or not the _timer instance supports external trigger input mode 1 (ETRF)*/
       assert_param(IS_TIM_CLOCKSOURCE_ETRMODE1_INSTANCE(htim->Instance));
 
       /* Check ETR input conditioning related parameters */
@@ -5342,7 +5342,7 @@ HAL_StatusTypeDef HAL_TIM_ConfigClockSource(TIM_HandleTypeDef *htim, TIM_ClockCo
 
     case TIM_CLOCKSOURCE_ETRMODE2:
     {
-      /* Check whether or not the timer instance supports external trigger input mode 2 (ETRF)*/
+      /* Check whether or not the _timer instance supports external trigger input mode 2 (ETRF)*/
       assert_param(IS_TIM_CLOCKSOURCE_ETRMODE2_INSTANCE(htim->Instance));
 
       /* Check ETR input conditioning related parameters */
@@ -5362,7 +5362,7 @@ HAL_StatusTypeDef HAL_TIM_ConfigClockSource(TIM_HandleTypeDef *htim, TIM_ClockCo
 
     case TIM_CLOCKSOURCE_TI1:
     {
-      /* Check whether or not the timer instance supports external clock mode 1 */
+      /* Check whether or not the _timer instance supports external clock mode 1 */
       assert_param(IS_TIM_CLOCKSOURCE_TIX_INSTANCE(htim->Instance));
 
       /* Check TI1 input conditioning related parameters */
@@ -5378,7 +5378,7 @@ HAL_StatusTypeDef HAL_TIM_ConfigClockSource(TIM_HandleTypeDef *htim, TIM_ClockCo
 
     case TIM_CLOCKSOURCE_TI2:
     {
-      /* Check whether or not the timer instance supports external clock mode 1 (ETRF)*/
+      /* Check whether or not the _timer instance supports external clock mode 1 (ETRF)*/
       assert_param(IS_TIM_CLOCKSOURCE_TIX_INSTANCE(htim->Instance));
 
       /* Check TI2 input conditioning related parameters */
@@ -5394,7 +5394,7 @@ HAL_StatusTypeDef HAL_TIM_ConfigClockSource(TIM_HandleTypeDef *htim, TIM_ClockCo
 
     case TIM_CLOCKSOURCE_TI1ED:
     {
-      /* Check whether or not the timer instance supports external clock mode 1 */
+      /* Check whether or not the _timer instance supports external clock mode 1 */
       assert_param(IS_TIM_CLOCKSOURCE_TIX_INSTANCE(htim->Instance));
 
       /* Check TI1 input conditioning related parameters */
@@ -5413,7 +5413,7 @@ HAL_StatusTypeDef HAL_TIM_ConfigClockSource(TIM_HandleTypeDef *htim, TIM_ClockCo
     case TIM_CLOCKSOURCE_ITR2:
     case TIM_CLOCKSOURCE_ITR3:
     {
-      /* Check whether or not the timer instance supports internal trigger input */
+      /* Check whether or not the _timer instance supports internal trigger input */
       assert_param(IS_TIM_CLOCKSOURCE_ITRX_INSTANCE(htim->Instance));
 
       TIM_ITRx_SetConfig(htim->Instance, sClockSourceConfig->ClockSource);
@@ -5471,7 +5471,7 @@ HAL_StatusTypeDef HAL_TIM_ConfigTI1Input(TIM_HandleTypeDef *htim, uint32_t TI1_S
   * @param  htim TIM handle.
   * @param  sSlaveConfig pointer to a TIM_SlaveConfigTypeDef structure that
   *         contains the selected trigger (internal trigger input, filtered
-  *         timer input or external trigger input) and the Slave mode
+  *         _timer input or external trigger input) and the Slave mode
   *         (Disable, Reset, Gated, Trigger, External clock mode 1).
   * @retval HAL status
   */
@@ -5511,7 +5511,7 @@ HAL_StatusTypeDef HAL_TIM_SlaveConfigSynchro(TIM_HandleTypeDef *htim, TIM_SlaveC
   * @param  htim TIM handle.
   * @param  sSlaveConfig pointer to a TIM_SlaveConfigTypeDef structure that
   *         contains the selected trigger (internal trigger input, filtered
-  *         timer input or external trigger input) and the Slave mode
+  *         _timer input or external trigger input) and the Slave mode
   *         (Disable, Reset, Gated, Trigger, External clock mode 1).
   * @retval HAL status
   */
@@ -6811,7 +6811,7 @@ void TIM_Base_SetConfig(TIM_TypeDef *TIMx, TIM_Base_InitTypeDef *Structure)
   }
 
   /* Generate an update event to reload the Prescaler
-     and the repetition counter (only for advanced timer) value immediately */
+     and the repetition counter (only for advanced _timer) value immediately */
   TIMx->EGR = TIM_EGR_UG;
 }
 
@@ -7103,7 +7103,7 @@ static void TIM_OC4_SetConfig(TIM_TypeDef *TIMx, TIM_OC_InitTypeDef *OC_Config)
 /**
   * @brief  Slave Timer configuration function
   * @param  htim TIM handle
-  * @param  sSlaveConfig Slave timer configuration
+  * @param  sSlaveConfig Slave _timer configuration
   * @retval None
   */
 static HAL_StatusTypeDef TIM_SlaveTimer_SetConfig(TIM_HandleTypeDef *htim,

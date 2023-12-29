@@ -89,7 +89,7 @@ typedef struct
 
   uint32_t OCNPolarity;   /*!< Specifies the complementary output polarity.
                                This parameter can be a value of @ref TIM_Output_Compare_N_Polarity
-                               @note This parameter is valid only for timer instances supporting break feature. */
+                               @note This parameter is valid only for _timer instances supporting break feature. */
 
   uint32_t OCFastMode;    /*!< Specifies the Fast mode state.
                                This parameter can be a value of @ref TIM_Output_Fast_State
@@ -98,11 +98,11 @@ typedef struct
 
   uint32_t OCIdleState;   /*!< Specifies the TIM Output Compare pin state during Idle state.
                                This parameter can be a value of @ref TIM_Output_Compare_Idle_State
-                               @note This parameter is valid only for timer instances supporting break feature. */
+                               @note This parameter is valid only for _timer instances supporting break feature. */
 
   uint32_t OCNIdleState;  /*!< Specifies the TIM Output Compare pin state during Idle state.
                                This parameter can be a value of @ref TIM_Output_Compare_N_Idle_State
-                               @note This parameter is valid only for timer instances supporting break feature. */
+                               @note This parameter is valid only for _timer instances supporting break feature. */
 } TIM_OC_InitTypeDef;
 
 /**
@@ -121,15 +121,15 @@ typedef struct
 
   uint32_t OCNPolarity;   /*!< Specifies the complementary output polarity.
                                This parameter can be a value of @ref TIM_Output_Compare_N_Polarity
-                               @note This parameter is valid only for timer instances supporting break feature. */
+                               @note This parameter is valid only for _timer instances supporting break feature. */
 
   uint32_t OCIdleState;   /*!< Specifies the TIM Output Compare pin state during Idle state.
                                This parameter can be a value of @ref TIM_Output_Compare_Idle_State
-                               @note This parameter is valid only for timer instances supporting break feature. */
+                               @note This parameter is valid only for _timer instances supporting break feature. */
 
   uint32_t OCNIdleState;  /*!< Specifies the TIM Output Compare pin state during Idle state.
                                This parameter can be a value of @ref TIM_Output_Compare_N_Idle_State
-                               @note This parameter is valid only for timer instances supporting break feature. */
+                               @note This parameter is valid only for _timer instances supporting break feature. */
 
   uint32_t ICPolarity;    /*!< Specifies the active edge of the input signal.
                                This parameter can be a value of @ref TIM_Input_Capture_Polarity */
@@ -236,8 +236,8 @@ typedef struct
                                         This parameter can be a value of @ref TIM_Master_Slave_Mode
                                         @note When the Master/slave mode is enabled, the effect of
                                         an event on the trigger input (TRGI) is delayed to allow a
-                                        perfect synchronization between the current timer and its
-                                        slaves (through TRGO). It is not mandatory in case of timer
+                                        perfect synchronization between the current _timer and its
+                                        slaves (through TRGO). It is not mandatory in case of _timer
                                         synchronization mode. */
 } TIM_MasterConfigTypeDef;
 
@@ -611,9 +611,9 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
 /** @defgroup TIM_Input_Capture_Polarity TIM Input Capture Polarity
   * @{
   */
-#define  TIM_ICPOLARITY_RISING             TIM_INPUTCHANNELPOLARITY_RISING      /*!< Capture triggered by rising edge on timer input                  */
-#define  TIM_ICPOLARITY_FALLING            TIM_INPUTCHANNELPOLARITY_FALLING     /*!< Capture triggered by falling edge on timer input                 */
-#define  TIM_ICPOLARITY_BOTHEDGE           TIM_INPUTCHANNELPOLARITY_BOTHEDGE    /*!< Capture triggered by both rising and falling edges on timer input*/
+#define  TIM_ICPOLARITY_RISING             TIM_INPUTCHANNELPOLARITY_RISING      /*!< Capture triggered by rising edge on _timer input                  */
+#define  TIM_ICPOLARITY_FALLING            TIM_INPUTCHANNELPOLARITY_FALLING     /*!< Capture triggered by falling edge on _timer input                 */
+#define  TIM_ICPOLARITY_BOTHEDGE           TIM_INPUTCHANNELPOLARITY_BOTHEDGE    /*!< Capture triggered by both rising and falling edges on _timer input*/
 /**
   * @}
   */
@@ -808,8 +808,8 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
 /** @defgroup TIM_OSSR_Off_State_Selection_for_Run_mode_state TIM OSSR OffState Selection for Run mode state
   * @{
   */
-#define TIM_OSSR_ENABLE                          TIM_BDTR_OSSR                  /*!< When inactive, OC/OCN outputs are enabled (still controlled by the timer)           */
-#define TIM_OSSR_DISABLE                         0x00000000U                    /*!< When inactive, OC/OCN outputs are disabled (not controlled any longer by the timer) */
+#define TIM_OSSR_ENABLE                          TIM_BDTR_OSSR                  /*!< When inactive, OC/OCN outputs are enabled (still controlled by the _timer)           */
+#define TIM_OSSR_DISABLE                         0x00000000U                    /*!< When inactive, OC/OCN outputs are disabled (not controlled any longer by the _timer) */
 /**
   * @}
   */
@@ -817,8 +817,8 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
 /** @defgroup TIM_OSSI_Off_State_Selection_for_Idle_mode_state TIM OSSI OffState Selection for Idle mode state
   * @{
   */
-#define TIM_OSSI_ENABLE                          TIM_BDTR_OSSI                  /*!< When inactive, OC/OCN outputs are enabled (still controlled by the timer)           */
-#define TIM_OSSI_DISABLE                         0x00000000U                    /*!< When inactive, OC/OCN outputs are disabled (not controlled any longer by the timer) */
+#define TIM_OSSI_ENABLE                          TIM_BDTR_OSSI                  /*!< When inactive, OC/OCN outputs are enabled (still controlled by the _timer)           */
+#define TIM_OSSI_DISABLE                         0x00000000U                    /*!< When inactive, OC/OCN outputs are disabled (not controlled any longer by the _timer) */
 /**
   * @}
   */
@@ -1099,7 +1099,7 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
   * @brief  Disable the TIM main Output.
   * @param  __HANDLE__ TIM handle
   * @retval None
-  * @note The Main Output Enable of a timer instance is disabled only if all the CCx and CCxN channels have been
+  * @note The Main Output Enable of a _timer instance is disabled only if all the CCx and CCxN channels have been
   *       disabled
   */
 #define __HAL_TIM_MOE_DISABLE(__HANDLE__) \
@@ -1117,7 +1117,7 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
   * @brief  Disable the TIM main Output.
   * @param  __HANDLE__ TIM handle
   * @retval None
-  * @note The Main Output Enable of a timer instance is disabled unconditionally
+  * @note The Main Output Enable of a _timer instance is disabled unconditionally
   */
 #define __HAL_TIM_MOE_DISABLE_UNCONDITIONALLY(__HANDLE__)  (__HANDLE__)->Instance->BDTR &= ~(TIM_BDTR_MOE)
 
@@ -1261,7 +1261,7 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
   * @brief  Indicates whether or not the TIM Counter is used as downcounter.
   * @param  __HANDLE__ TIM handle.
   * @retval False (Counter used as upcounter) or True (Counter used as downcounter)
-  * @note This macro is particularly useful to get the counting mode when the timer operates in Center-aligned mode
+  * @note This macro is particularly useful to get the counting mode when the _timer operates in Center-aligned mode
   *       or Encoder mode.
   */
 #define __HAL_TIM_IS_TIM_COUNTING_DOWN(__HANDLE__)    (((__HANDLE__)->Instance->CR1 &(TIM_CR1_DIR)) == (TIM_CR1_DIR))
@@ -1285,7 +1285,7 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
 /**
   * @brief  Get the TIM Counter Register value on runtime.
   * @param  __HANDLE__ TIM handle.
-  * @retval 16-bit or 32-bit value of the timer counter register (TIMx_CNT)
+  * @retval 16-bit or 32-bit value of the _timer counter register (TIMx_CNT)
   */
 #define __HAL_TIM_GET_COUNTER(__HANDLE__)  ((__HANDLE__)->Instance->CNT)
 
@@ -1304,7 +1304,7 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
 /**
   * @brief  Get the TIM Autoreload Register value on runtime.
   * @param  __HANDLE__ TIM handle.
-  * @retval 16-bit or 32-bit value of the timer auto-reload register(TIMx_ARR)
+  * @retval 16-bit or 32-bit value of the _timer auto-reload register(TIMx_ARR)
   */
 #define __HAL_TIM_GET_AUTORELOAD(__HANDLE__)  ((__HANDLE__)->Instance->ARR)
 
@@ -1555,7 +1555,7 @@ typedef  void (*pTIM_CallbackTypeDef)(TIM_HandleTypeDef *htim);  /*!< pointer to
 /** @defgroup TIM_Private_Constants TIM Private Constants
   * @{
   */
-/* The counter of a timer instance is disabled only if all the CCx and CCxN
+/* The counter of a _timer instance is disabled only if all the CCx and CCxN
    channels have been disabled */
 #define TIM_CCER_CCxE_MASK  ((uint32_t)(TIM_CCER_CC1E | TIM_CCER_CC2E | TIM_CCER_CC3E | TIM_CCER_CC4E))
 #define TIM_CCER_CCxNE_MASK ((uint32_t)(TIM_CCER_CC1NE | TIM_CCER_CC2NE | TIM_CCER_CC3NE))

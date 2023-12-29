@@ -596,7 +596,7 @@ typedef struct
   __IO uint32_t CR;      /*!< RTC control register,                                     Address offset: 0x08 */
   __IO uint32_t ISR;     /*!< RTC initialization and status register,                   Address offset: 0x0C */
   __IO uint32_t PRER;    /*!< RTC prescaler register,                                   Address offset: 0x10 */
-  __IO uint32_t WUTR;    /*!< RTC wakeup timer register,                                Address offset: 0x14 */
+  __IO uint32_t WUTR;    /*!< RTC wakeup _timer register,                                Address offset: 0x14 */
   __IO uint32_t CALIBR;  /*!< RTC calibration register,                                 Address offset: 0x18 */
   __IO uint32_t ALRMAR;  /*!< RTC alarm A register,                                     Address offset: 0x1C */
   __IO uint32_t ALRMBR;  /*!< RTC alarm B register,                                     Address offset: 0x20 */
@@ -669,7 +669,7 @@ typedef struct
   __IO const uint32_t  RESP2;          /*!< SDIO response 2 register,       Address offset: 0x18 */
   __IO const uint32_t  RESP3;          /*!< SDIO response 3 register,       Address offset: 0x1C */
   __IO const uint32_t  RESP4;          /*!< SDIO response 4 register,       Address offset: 0x20 */
-  __IO uint32_t DTIMER;                /*!< SDIO data timer register,       Address offset: 0x24 */
+  __IO uint32_t DTIMER;                /*!< SDIO data _timer register,       Address offset: 0x24 */
   __IO uint32_t DLEN;                  /*!< SDIO data length register,      Address offset: 0x28 */
   __IO uint32_t DCTRL;                 /*!< SDIO data control register,     Address offset: 0x2C */
   __IO const uint32_t  DCOUNT;         /*!< SDIO data counter register,     Address offset: 0x30 */
@@ -8058,7 +8058,7 @@ typedef struct
 
 #define FMC_SDRTR_COUNT_Pos         (1U)                                       
 #define FMC_SDRTR_COUNT_Msk         (0x1FFFUL << FMC_SDRTR_COUNT_Pos)           /*!< 0x00003FFE */
-#define FMC_SDRTR_COUNT             FMC_SDRTR_COUNT_Msk                        /*!<COUNT[12:0] bits (Refresh timer count) */
+#define FMC_SDRTR_COUNT             FMC_SDRTR_COUNT_Msk                        /*!<COUNT[12:0] bits (Refresh _timer count) */
 
 #define FMC_SDRTR_REIE_Pos          (14U)                                      
 #define FMC_SDRTR_REIE_Msk          (0x1UL << FMC_SDRTR_REIE_Pos)               /*!< 0x00004000 */

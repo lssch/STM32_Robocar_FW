@@ -182,7 +182,7 @@ void PendSV_Handler(void)
 }
 
 /**
-  * @brief This function handles System tick timer.
+  * @brief This function handles System tick _timer.
   */
 void SysTick_Handler(void)
 {
