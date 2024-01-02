@@ -4,7 +4,7 @@
 
 #include "Odometry.h"
 
-Odometry::Odometry(TIM_HandleTypeDef &htim, Sensor::Sensor &sensor, Data::Data &data, Parameter::Parameter &parameter)
+Odometry::Odometry(TIM_HandleTypeDef &htim, const Sensor::Sensor &sensor, Data::Data &data, const Parameter::Parameter &parameter)
   : _htim(htim),
     _sensor(sensor),
     _data(data),

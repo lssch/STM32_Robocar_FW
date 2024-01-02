@@ -6,44 +6,44 @@
 #include "parameter_handler.h"
 #include "stm32f4xx_hal.h"
 
-ParameterHandler::ParameterHandler(Parameter::Parameter* parameter_)
-  : parameter(parameter_) {
+ParameterHandler::ParameterHandler(Parameter::Parameter& parameter)
+  : _parameter(parameter) {
 }
 
 void ParameterHandler::InitParameter() {
-  parameter->car.chassis_length = 224;
-  parameter->car.chassis_width = 146;
-  parameter->car.wheel_diameter = 61;
+  _parameter.car.chassis_length = 224;
+  _parameter.car.chassis_width = 146;
+  _parameter.car.wheel_diameter = 61;
 
-  parameter->imu.gyro_max_dps = Parameter::ImuGyproMaxDps::PM_500_DPS;
-  parameter->imu.gyro_samplerate_divisor = 0;
-  parameter->imu.accel_max_g = Parameter::ImuAccelMaxG::PM_4G;
-  parameter->imu.gyro_calibration_samples = 100;
+  _parameter.imu.gyro_max_dps = Parameter::ImuGyproMaxDps::PM_500_DPS;
+  _parameter.imu.gyro_samplerate_divisor = 0;
+  _parameter.imu.accel_max_g = Parameter::ImuAccelMaxG::PM_4G;
+  _parameter.imu.gyro_calibration_samples = 100;
 
-  parameter->vfs.height = 18;
-  parameter->vfs.measured_target_length = 4;
-  parameter->vfs.led_shutter = 1;
-  parameter->vfs.high_resolution = 1;
-  parameter->vfs.light_color = {255, 0, 0, 20};
+  _parameter.vfs.height = 18;
+  _parameter.vfs.measured_target_length = 4;
+  _parameter.vfs.led_shutter = 1;
+  _parameter.vfs.high_resolution = 1;
+  _parameter.vfs.light_color = {255, 0, 0, 20};
 
-  parameter->servo.zero_position = 0;
-  parameter->servo.max_steering_angle = 6000;
-  parameter->servo.steering_limits = 2500;
+  _parameter.servo.zero_position = 0;
+  _parameter.servo.max_steering_angle = 6000;
+  _parameter.servo.steering_limits = 2500;
 
-  parameter->navlight.color_front = {255, 255, 255, 100};
-  parameter->navlight.color_back = {255, 0, 0, 100};
-  parameter->navlight.color_back = {3*255/4, 255/4, 0, 100};
+  _parameter.navlight.color_front = {255, 255, 255, 100};
+  _parameter.navlight.color_back = {255, 0, 0, 100};
+  _parameter.navlight.color_back = {3*255/4, 255/4, 0, 100};
 
-  parameter->odometry.origin_to_front = 135;
-  parameter->odometry.origin_to_back = 50;
-  parameter->odometry.imu_link = {-50,0,0};
-  parameter->odometry.tof_spot_link = {100,0,0};
-  parameter->odometry.tof_cam_link = {50,0,50};
-  parameter->odometry.vfs_link = {-5,0,0};
+  _parameter.odometry.origin_to_front = 135;
+  _parameter.odometry.origin_to_back = 50;
+  _parameter.odometry.imu_link = {-50,0,0};
+  _parameter.odometry.tof_spot_link = {100,0,0};
+  _parameter.odometry.tof_cam_link = {50,0,50};
+  _parameter.odometry.vfs_link = {-5,0,0};
 
-  parameter->operating_modes.distance.setpoint_distance_to_target = 200;
-  parameter->operating_modes.distance.positioning_error_boundaries = 1;
-  parameter->operating_modes.distance.threshold_fine_positioning = 300;
+  _parameter.operating_modes.distance.setpoint_distance_to_target = 200;
+  _parameter.operating_modes.distance.positioning_error_boundaries = 1;
+  _parameter.operating_modes.distance.threshold_fine_positioning = 300;
 }
 
 uint8_t ParameterHandler::GetParameter() {
@@ -62,60 +62,60 @@ uint8_t ParameterHandler::GetParameter() {
   if (*parameter_uint8_t++ != check_value) return ERROR;
 
 
-  parameter->car.chassis_width = *(parameter_uint8_t);
+  _parameter.car.chassis_width = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->car.wheel_diameter = *(parameter_uint8_t);
-  parameter_uint8_t += 1;
-
-  parameter->imu.gyro_samplerate_divisor = *(parameter_uint8_t);
-  parameter_uint8_t += 1;
-  parameter->imu.accel_max_g = static_cast<Parameter::ImuAccelMaxG>(*(parameter_uint8_t));
-  parameter_uint8_t += 1;
-  parameter->imu.gyro_calibration_samples = *(parameter_uint8_t);
+  _parameter.car.wheel_diameter = *(parameter_uint8_t);
   parameter_uint8_t += 1;
 
-  parameter->vfs.light_color.red = *(parameter_uint8_t);
+  _parameter.imu.gyro_samplerate_divisor = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->vfs.light_color.green = *(parameter_uint8_t);
+  _parameter.imu.accel_max_g = static_cast<Parameter::ImuAccelMaxG>(*(parameter_uint8_t));
   parameter_uint8_t += 1;
-  parameter->vfs.light_color.blue = *(parameter_uint8_t);
-  parameter_uint8_t += 1;
-  parameter->vfs.light_color.alpha = *(parameter_uint8_t);
+  _parameter.imu.gyro_calibration_samples = *(parameter_uint8_t);
   parameter_uint8_t += 1;
 
-  parameter->navlight.color_front.red = *(parameter_uint8_t);
+  _parameter.vfs.light_color.red = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_front.green = *(parameter_uint8_t);
+  _parameter.vfs.light_color.green = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_front.blue = *(parameter_uint8_t);
+  _parameter.vfs.light_color.blue = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_back.red = *(parameter_uint8_t);
+  _parameter.vfs.light_color.alpha = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_back.green = *(parameter_uint8_t);
+
+  _parameter.navlight.color_front.red = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_back.blue = *(parameter_uint8_t);
+  _parameter.navlight.color_front.green = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_blinker.red = *(parameter_uint8_t);
+  _parameter.navlight.color_front.blue = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_blinker.green = *(parameter_uint8_t);
+  _parameter.navlight.color_back.red = *(parameter_uint8_t);
   parameter_uint8_t += 1;
-  parameter->navlight.color_blinker.blue = *(parameter_uint8_t);
+  _parameter.navlight.color_back.green = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  _parameter.navlight.color_back.blue = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  _parameter.navlight.color_blinker.red = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  _parameter.navlight.color_blinker.green = *(parameter_uint8_t);
+  parameter_uint8_t += 1;
+  _parameter.navlight.color_blinker.blue = *(parameter_uint8_t);
   parameter_uint8_t += 1;
 
   // read words
   parameter_uint16_t = (uint16_t*) parameter_uint8_t;
 
-  parameter->car.chassis_length = *(parameter_uint16_t);
+  _parameter.car.chassis_length = *(parameter_uint16_t);
   parameter_uint16_t += 2;
 
-  parameter->imu.gyro_max_dps = static_cast<Parameter::ImuGyproMaxDps>(*parameter_uint16_t);
+  _parameter.imu.gyro_max_dps = static_cast<Parameter::ImuGyproMaxDps>(*parameter_uint16_t);
   parameter_uint16_t += 2;
 
-  parameter->servo.zero_position = static_cast<int16_t>(*parameter_uint16_t);
+  _parameter.servo.zero_position = static_cast<int16_t>(*parameter_uint16_t);
   parameter_uint16_t += 2;
-  parameter->servo.max_steering_angle = static_cast<int16_t>(*parameter_uint16_t);
+  _parameter.servo.max_steering_angle = static_cast<int16_t>(*parameter_uint16_t);
   parameter_uint16_t += 2;
-  parameter->servo.steering_limits = static_cast<int16_t>(*parameter_uint16_t);
+  _parameter.servo.steering_limits = static_cast<int16_t>(*parameter_uint16_t);
   parameter_uint16_t += 2;
 
   // read dwords
@@ -139,37 +139,37 @@ uint8_t ParameterHandler::SetParameter() {
   uint8_t parameter_uint8_t[] = {
           check_value,
 
-          parameter->car.chassis_width,
-          parameter->car.wheel_diameter,
+          _parameter.car.chassis_width,
+          _parameter.car.wheel_diameter,
 
-          parameter->imu.gyro_samplerate_divisor,
-          static_cast<uint8_t>(parameter->imu.accel_max_g),
-          parameter->imu.gyro_calibration_samples,
+          _parameter.imu.gyro_samplerate_divisor,
+          static_cast<uint8_t>(_parameter.imu.accel_max_g),
+          _parameter.imu.gyro_calibration_samples,
 
-          parameter->vfs.light_color.red,
-          parameter->vfs.light_color.green,
-          parameter->vfs.light_color.blue,
-          parameter->vfs.light_color.alpha,
+          _parameter.vfs.light_color.red,
+          _parameter.vfs.light_color.green,
+          _parameter.vfs.light_color.blue,
+          _parameter.vfs.light_color.alpha,
 
-          parameter->navlight.color_front.red,
-          parameter->navlight.color_front.green,
-          parameter->navlight.color_front.blue,
-          parameter->navlight.color_back.red,
-          parameter->navlight.color_back.green,
-          parameter->navlight.color_back.blue,
-          parameter->navlight.color_blinker.red,
-          parameter->navlight.color_blinker.green,
-          parameter->navlight.color_blinker.blue,
+          _parameter.navlight.color_front.red,
+          _parameter.navlight.color_front.green,
+          _parameter.navlight.color_front.blue,
+          _parameter.navlight.color_back.red,
+          _parameter.navlight.color_back.green,
+          _parameter.navlight.color_back.blue,
+          _parameter.navlight.color_blinker.red,
+          _parameter.navlight.color_blinker.green,
+          _parameter.navlight.color_blinker.blue,
   };
 
   uint16_t parameter_uint16_t[] = {
-          parameter->car.chassis_length,
+          _parameter.car.chassis_length,
 
-          static_cast<uint16_t>(parameter->imu.gyro_max_dps),
+          static_cast<uint16_t>(_parameter.imu.gyro_max_dps),
 
-          static_cast<uint16_t>(parameter->servo.zero_position),
-          static_cast<uint16_t>(parameter->servo.max_steering_angle),
-          static_cast<uint16_t>(parameter->servo.steering_limits),
+          static_cast<uint16_t>(_parameter.servo.zero_position),
+          static_cast<uint16_t>(_parameter.servo.max_steering_angle),
+          static_cast<uint16_t>(_parameter.servo.steering_limits),
   };
 
   uint32_t parameter_uint32_t[] = {

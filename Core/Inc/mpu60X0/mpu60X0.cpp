@@ -13,7 +13,7 @@ MPU60X0::MPU60X0(I2C_HandleTypeDef &hi2c, const Parameter::Imu &parameter, State
   _state = State::Imu::DISCONNECTED;
 }
 
-uint8_t MPU60X0::init(uint8_t trials) {
+uint8_t MPU60X0::init(const uint8_t trials) {
   uint8_t tx_data;
 
   // Check if MPU is available on I2C

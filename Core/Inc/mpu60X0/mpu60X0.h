@@ -22,17 +22,43 @@
 class MPU60X0 {
 public:
   /// @brief MPU6050 and MPU 60000 object based on the I2C protocol.
-  /// @param hi2c I2C connection.
-  /// @param parameter IMU parameters to configure the sensor.
-  /// @param state IMU state to response the current state.
-  /// @param data Data to store the current calibration values to
+  /// @param[in,out] hi2c I2C interface to communicate with the connected sensor.
+  /// @param[in] parameter Parameters to configure the sensor.
+  /// @param[out] state State to response the current state.
+  /// @param[out] data Data to store the current calibration values to.
+  /// @todo data can be changed to a reference.
   MPU60X0(I2C_HandleTypeDef &hi2c, const Parameter::Imu &parameter, State::Imu &state, Data::Imu *data);
 
-  uint8_t init(uint8_t trials);
+  /// @brief Initializer to setup the imu.
+  /// @param trials Number of tries to connect to the imu.
+  /// @return SUCCESS if the imu is ready to use
+  /// @todo The return value can be changed to bool.
+  uint8_t init(const uint8_t trials);
+
+  /// @brief Set the maximum rotation acceleration.
+  /// @return SUCCESS if the change is valid.
+  /// @todo The return value can be changed to bool.
   uint8_t SetGyroMaxDps();
+
+  /// @brief 8-bit unsigned value. The Sample Rate is determined by dividing the gyroscope output rate by this value.
+  /// @return SUCCESS if the change is valid.
+  /// @todo The return value can be changed to bool.
   uint8_t SetGyroSamplerateDivisor();
+
+  /// @brief Set the maximum translation acceleration.
+  /// @return SUCCESS if the change is valid.
+  /// @todo The return value can be changed to bool.
   uint8_t SetAccelerometerMaxG();
+
+  /// @brief Get the current accelerometer, gyroscope and temperature values from the sensor.
+  /// @param[in] imu Container to store the values to.
+  /// @return SUCCESS if the reading is valid.
+  /// @todo Proper name for this function.
   uint8_t GetValues(Sensor::Imu &imu);
+
+  /// @brief Calibrate the gyro to compensate the constant offset \f$c_{bias}\f$.
+  /// Formula for real the real output value: \f$y = m_{bias} \cdot x + q_{bias}\f$
+  /// @attention The liner offset \f$m_{bias}\f$ isn't removed.
   void CalibrateGyro();
 
 private:
