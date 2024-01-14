@@ -76,12 +76,12 @@ UART_HandleTypeDef huart6;
 /* USER CODE BEGIN PV */
 robocar_data_t data;
 
-ParameterHandler parameter_handler{&data.parameter};
+ParameterHandler parameter_handler{data.parameter};
 Odometry odometry{htim11, data.sensor, data.data, data.parameter};
 
 TFLC02::TFLC02 tof_spot{huart4, data.state.tof_spot};
 MPU60X0 imu{hi2c1, data.parameter.imu, data.state.imu, &data.data.imu};
-ADNS3080 vfs{&hspi2, &data.parameter.vfs};
+ADNS3080 vfs{hspi2, data.parameter.vfs};
 A010 tof_cam{huart6};
 
 Comms::CommsSlave slave{&hspi1, &data};

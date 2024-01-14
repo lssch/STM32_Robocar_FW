@@ -21,7 +21,7 @@ public:
   /// @param[in,out] huart Uart interface to communicate with the connected camera.
   A010(UART_HandleTypeDef &huart);
 
-  /// @brief Initialiser to setup the camera
+  /// @brief Initializer to setup the camera
   /// @todo This function can be eliminated if the Constructor is called inside the main function and after the initialisation of the huart
   void init();
 
